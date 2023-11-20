@@ -1,2 +1,5 @@
 # Crew_Scheduling
-This repo contains the files for the optimization model that is built for crew scheduling.
+
+
+## Pairing Generation
+Depth-First Search Algorithm is used for the generation of pairings. The pairing generation is separated into two parts Duty Generation and Pairing Generation.
