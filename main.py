@@ -1,22 +1,12 @@
-# importing the packagaes
-from flask import Flask
+# importing the packages
+from data.data_creation import create_data
 
-# create an instance of the flask application
-app = Flask(__name__)
+def main():
 
-# homepage - app route
-@app.route('/')
-def index():
-    return 'Welcome to Crew Scheduling App!'
+    # create the data for generating the pairs
+    # inputs are (number_of_days, num_of_flight_legs_per_day)
+    create_data(30, 500)
 
-# second page - # assume module one page
-@app.route('/optimize')
-def optimize_crew_schedule():
-    # Call your optimization function here
-    # Example:
-    # result = solve_routing_problem()
-    return 'Optimization completed'  # Return the result
 
-# initialize the application
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    main()
