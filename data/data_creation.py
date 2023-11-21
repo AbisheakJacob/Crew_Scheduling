@@ -1,11 +1,20 @@
 # importing the packages
 import pandas as pd
 import random
+import os
 
-def create_data(days, num_flights):
+def create_data():
+
+    # inputs are (number_of_days, num_of_flight_legs_per_day)
+    num_days = int(input("Enter the number of Days in the Schedule: "))
+    num_flights = int(input("Enter the number of flight legs per day in the Schedule: "))
     
+    # deleting all the files in the flight_legs directory
+    for filename in os.listdir('data/flight_legs'):
+        if os.path.isfile(os.path.join('data/flight_legs', filename)):
+            os.remove(os.path.join('data/flight_legs', filename))
     # create a loop to create the excel sheets for a month
-    for j in range(1, days + 1):
+    for j in range(1, num_days + 1):
 
         # define the airports
         airports = ['Chennai', 'Bangalore', 'Mumbai', 'Delhi', 'Calcutta']
