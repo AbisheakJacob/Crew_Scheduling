@@ -45,7 +45,11 @@ The team will obtain clarity on the various factors involved by conducting theor
 
 2. The Fleet Types are already assigned to specific flights.
 
+## Literature Review
+In the first phase, we did our exploratory research to understand the industry and drafted a business requirement document on crew scheduling. ​We tried to understand different algorithms such as dynamic programming, depth-first search and nearest neighbour for crew pairing. On comparing, we found that dewpth-first search is best for pairing generation. Later, we will optimise on crew pairing using column generation algorithm to reduce the cost in terms of time span of pairings, covering all unique flight legs.
+
 ## Pairing Generation
+Initially, we focused on a specific subset of the broader crew scheduling problem. We've generated hypothetical data of flight legs for crew pairing.
 Depth-First Search Algorithm is used for the generation of pairings. The pairing generation is separated into two parts Duty Generation and Pairing Generation.
 In Duty Generation, a flight schedule is given as input. This flight schedule contains all the non-stop flight legs and their associated attributes such as flights’ departure and arrival airport, their start and end times.
 Subjected to several legality constraints which must be satisfied for genearting flight duties -
