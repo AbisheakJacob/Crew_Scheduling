@@ -49,9 +49,10 @@ The team will obtain clarity on the various factors involved by conducting theor
 In the first phase, we did our exploratory research to understand the airline industry and drafted a business requirement document on crew scheduling. ​We tried to understand different algorithms such as dynamic programming, depth-first search, and nearest neighbor for pairing generation. On comparing, we found that depth-first search is best for pairing generation. Later, we will optimize crew pairing using a column generation algorithm to reduce the cost in terms of the time span of pairings, covering all unique flight legs.
 
 ## Pairing Generation
-Initially, we focused on a specific subset of the broader crew scheduling problem. We've generated hypothetical data of flight legs for crew pairing.
-Depth-First Search Algorithm is used for the generation of pairings. The pairing generation is separated into two parts - Duty Generation and Pairing Generation.
-In Duty Generation, a flight schedule is given as input. This flight schedule contains all the non-stop flight legs and their associated attributes such as flights’ departure and arrival airport, their start and end times.
-Subjected to several legality constraints which must be satisfied for genearting flight duties -
-Start-city and End-city Constraints: 1st flight of a flight duty should start from a crew-base and should end at the same crew-base only.
-Sit-time Constraints: Sit-time between two consecutive flight legs in a flight duty should be restricted by minimum limit of 60 minutes.
+Initially, our focus was on a specific subset of the broader crew scheduling problem. 
+We have generated hypothetical data for flight legs in crew pairings.
+The Depth-First Search Algorithm is employed for pairing generation, which is divided into two main components: Duty Generation and Pairing Generation.
+In Duty Generation, a flight schedule is provided as input. This schedule includes all non-stop flight legs and their associated attributes, such as departure and arrival airports, as well as start and end times.
+Several legality constraints must be satisfied for generating flight duties:
+Start-city and End-city Constraints: The first flight of a flight duty should commence from a crew base and conclude at the same crew base.
+Sit-time Constraints: The sit-time between two consecutive flight legs in a flight duty should adhere to a minimum limit of 60 minutes.
