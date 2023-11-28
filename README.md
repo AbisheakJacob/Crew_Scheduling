@@ -46,7 +46,7 @@ The team will obtain clarity on the various factors involved by conducting theor
 2. The Fleet Types are already assigned to specific flights.
 
 ## Literature Review
-In the first phase, we did our exploratory research to understand the airline industry and drafted a business requirement document on crew scheduling. ​We tried to understand different algorithms such as dynamic programming, depth-first search, and nearest neighbor for pairing generation. On comparing, we found that depth-first search is best for pairing generation. Later, we will optimize crew pairing using a column generation algorithm to reduce the cost in terms of the time span of pairings, covering all unique flight legs.
+In the first phase, we did our exploratory research to understand the airline industry and drafted a business requirement document on crew scheduling. ​We tried to understand different algorithms such as dynamic programming, depth-first search, and nearest neighbor for pairing generation. On comparing, we found that depth-first search is best for pairing generation. We also studied about optimizing crew pairing using set partitioning - master problem  and column generation subproblem to reduce the cost in terms of the time span of pairings, covering all unique flight legs.
 
 ## Pairing Generation
 Initially, our focus was on a specific subset of the broader crew scheduling problem. 
