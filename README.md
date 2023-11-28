@@ -46,13 +46,17 @@ The team will obtain clarity on the various factors involved by conducting theor
 2. The Fleet Types are already assigned to specific flights.
 
 ## Literature Review
-In the first phase, we did our exploratory research to understand the airline industry and drafted a business requirement document on crew scheduling. ​We tried to understand different algorithms such as dynamic programming, depth-first search, and nearest neighbor for pairing generation. On comparing, we found that depth-first search is best for pairing generation. We also studied about optimizing crew pairing using set partitioning - master problem  and column generation subproblem to reduce the cost in terms of the time span of pairings, covering all unique flight legs.
+In the initial phase, we conducted exploratory research to UNDERSATND the intricacies of the airline industry and formulated a business requirement document pertaining to crew scheduling. During this stage, we delved into various algorithms, including dynamic programming, depth-first search, and nearest neighbor, for pairing generation. Upon comparison, we determined that depth-first search is the most suitable for effective pairing generation.
+Additionally, we explored the optimization of crew pairing through set partitioning, involving a master problem and a column generation subproblem. The objective was to minimize costs associated with the time span of pairings, ensuring comprehensive coverage of all unique flight legs.
 
 ## Pairing Generation
-Initially, our focus was on a specific subset of the broader crew scheduling problem. 
-We have generated hypothetical data for flight legs in crew pairings.
-The Depth-First Search Algorithm is employed for pairing generation, which is divided into two main components: Duty Generation and Pairing Generation.
-In Duty Generation, a flight schedule is provided as input. This schedule includes all non-stop flight legs and their associated attributes, such as departure and arrival airports, as well as start and end times.
-Several legality constraints must be satisfied for generating flight duties:
-Start-city and End-city Constraints: The first flight of a flight duty should commence from a crew base and conclude at the same crew base.
-Sit-time Constraints: The sit-time between two consecutive flight legs in a flight duty should adhere to a minimum limit of 60 minutes.
+Initially, our focus is directed towards a specific subset within the broader scope of crew scheduling - Crew Pairing. 
+A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base.
+Hypothetical data for the flight legs within crew pairings has been generated.
+The pairing generation process utilizes the Depth-First Search Algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
+In the Duty Generation phase, a flight schedule serves as input, encompassing all non-stop flight legs and their relevant attributes such as departure and arrival airports, as well as start and end times. 
+To ensure comprehensive coverage of all flight legs, various legality constraints must be met during the generation of flight duties:
+Start-city and End-city Constraints: The initial flight of a flight duty must commence from a crew base and terminate at the same crew base.
+Sit-time Constraints: The sit-time between two consecutive flight legs in a flight duty must adhere to a minimum limit of 60 minutes.
+Following the duty generation, pairings are generated from flight duties, ensuring that each flight leg is covered by at least one pairing.
+A web user interface has been designed and implemented using Streamlit. This interface showcases flight duties, pairings, and a cost matrix quantified in terms of time (flying time and sit time in hours). The data is sourced from an Excel file, incorporating information about all the flight legs.
