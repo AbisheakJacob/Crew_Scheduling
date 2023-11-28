@@ -104,14 +104,14 @@ def is_valid_pair(df, current_pair):
 
 def generate_pairs():
     # reading the dataframe
-    df = pd.read_csv("../data/flight_legs/data.csv")
+    df = pd.read_csv("data/flight_legs/data.csv")
     df = df.head(50)
     # df["start_time"] = pd.to_datetime(df["start_time"], format="%Y-%m-%d %H:%M:%S")
     # df["end_time"] = pd.to_datetime(df["end_time"], format="%Y-%m-%d %H:%M:%S")
     # Initialize
     # read the pairs as list of lists
     # Open the file in read mode
-    with open("../data/duties/duties.txt", "r") as file:
+    with open("data/duties/duties.txt", "r") as file:
         lines = file.readlines()
 
     # convert each line (representing a list) to an actual list
@@ -124,4 +124,52 @@ def generate_pairs():
     for duty in duties:
         generate_pairs_dfs(df, duties, [duty], valid_pair_dfs)
 
-    print(valid_pair_dfs)
+        # Open the file in write mode
+    with open(f"data/pairings/pairings.txt", "w") as file:
+        # Write each item in the list to a new line
+        for item in valid_pair_dfs:
+            file.write(f"{item}\n")
+
+    # convert the file to a binary matrix csv file
+    # Create an empty dataframe for the pair matrix
+    pair_matrix = pd.DataFrame(
+        index=range(1, len(valid_pair_dfs) + 1), columns=df["flight_leg_id"]
+    )
+
+    # Fill the pair matrix based on flight leg combinations
+    for i, pair in enumerate(valid_pair_dfs):
+        for j, duty in enumerate(pair):
+            pair_matrix.loc[i + 1, pair[0]] = 1
+            pair_matrix.loc[i + 1, pair[1]] = 1
+            pair_matrix.loc[i + 1, pair[-1]] = 1
+
+    # Fill NaN values with 0
+    pair_matrix = pair_matrix.fillna(0)
+
+    # save the pair matrix as a csv filr
+    pair_matrix.to_csv("data/pairings/pair_matrix.csv", index=False)
+
+    # create a list to store the cost for the pairings
+    cost_list = []
+
+    # calculate the cost matrix from pair list
+    for pair in valid_pair_dfs:
+        cost_sec = datetime.strptime(
+            df.loc[df["flight_leg_id"] == pair[-1][-1], "end_time"].values[0],
+            "%Y-%m-%d %H:%M:%S",
+        ) - datetime.strptime(
+            df.loc[df["flight_leg_id"] == pair[0][0], "start_time"].values[0],
+            "%Y-%m-%d %H:%M:%S",
+        )
+
+        # Extract hours from the time difference
+        cost_hr = cost_sec.total_seconds() / 3600
+        cost_hr = abs(cost_hr)
+
+        cost_list.append(cost_hr)
+
+    # create the cost matrix
+    cost_matrix = pd.DataFrame(cost_list, columns=["cost"])
+
+    # save the pair matrix as a csv filr
+    cost_matrix.to_csv("data/cost_matrix/cost_matrix.csv", index=False)
