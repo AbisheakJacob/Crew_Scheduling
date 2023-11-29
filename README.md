@@ -50,7 +50,7 @@ In the initial phase, we conducted exploratory research to understand the intric
 possible, else by backtracking.
 Additionally, we explored the optimization of crew pairing through set partitioning, involving a master problem and a column generation subproblem. The objective was to minimize costs associated with the time span of pairings, ensuring comprehensive coverage of all unique flight legs.
 
-## Pairing Generation
+## Crew Pairing
 Initially, our focus is directed towards a specific subset within the broader scope of crew scheduling - Crew Pairing. 
 Hypothetical data for the flight legs within crew pairings has been generated.
 The pairing generation process utilizes the Depth-First Search Algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
