@@ -60,3 +60,15 @@ Start-city and End-city Constraints: The initial flight of a flight duty must co
 Sit-time Constraints: The sit-time between two consecutive flight legs in a flight duty must adhere to a minimum limit of 60 minutes.
 Following the duty generation, pairings are generated from flight duties, ensuring that each flight leg is covered by at least one pairing.
 A web user interface has been designed and implemented using Streamlit. This interface showcases flight duties, pairings, and a cost matrix quantified in terms of time (flying time and sit time in hours). The data is sourced from an Excel file, incorporating information about all the flight legs.
+
+## Depth-First Search Algorithm
+```
+function generate_duties(current_duty, duties):  
+  if current_duty is valid:
+    duties.append(current_duty)
+  else:
+    for each flight leg that is valid:
+      current_duty.append(flight leg)
+      generate_duties(current_duty, duties)
+      current_duty.pop()
+```
