@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 from data.data_creation import create_data
 from pairing_generation.duty_generation import generate_duties
-
+from pairing_generation.pairing_generation import generate_pairs
 
 # the code embeds the functions into a streamlit application
 def main():
@@ -16,17 +16,16 @@ def main():
     if uploaded_file is not None:
         # Read the CSV file into a DataFrame
         df = pd.read_csv(uploaded_file)
+        df.to_csv("data/flight_legs/data.csb", index=False)
 
         # Display the original DataFrame
         st.subheader("Original Data:")
         st.write(df)
 
-        # call the function to generate the duties and pairings
-        # generate_duties()
-        # generate_pairs()
-
         # Display the generated duties
         st.subheader("Generated Duties:")
+        # call the function to generate the duties
+        generate_duties()
         # Open the file in read mode
         with open("data/duties/duties.txt", "r") as file:
             lines = file.readlines()
@@ -37,6 +36,8 @@ def main():
 
         # Display the generated pairings
         st.subheader("Generated Pairings List and Pairings Matrix:")
+        # Call the function to generate pairs
+        generate_pairs()
         # Open the file in read mode
         with open("data/pairings/pairings.txt", "r") as file:
             lines = file.readlines()

@@ -10,22 +10,53 @@ def generate_pairs_dfs(df, duties, current_pair, valid_pairs):
     if is_valid_pair(df, current_pair):
         valid_pairs.append(current_pair.copy())
         return
-    if len(current_pair) == 3:
+    if len(current_pair) == 5:
         return
 
     # Recursive DFS for each remaining flight leg
-    for duty in duties:
+    for duty in [slist for slist in duties if (df.loc[df["flight_leg_id"] == current_pair[-1][-1], "destination_airport"].values[0] == df.loc[df["flight_leg_id"] == slist[0], "departure_airport"].values[0])]:
         # Check if the leg can be added to the current pair
-        # if is_valid_pair(df, current_pair.copy() + [flight_leg_id]):
-        current_pair.append(duty)
-        generate_pairs_dfs(df, duties, current_pair, valid_pairs)
-        current_pair.pop()  # Backtrack
+        if sub_df(df,current_pair, duty):
+            current_pair.append(duty)
+            generate_pairs_dfs(df, duties, current_pair, valid_pairs)
+            current_pair.pop()  # Backtrack
 
+# function taking care of the time constraint and total time constraint
+def sub_df(df, current_pair, duty):
+    return ((
+                datetime.strptime(
+                    df.loc[
+                        df["flight_leg_id"] == duty[0], "start_time"
+                    ].values[0],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+                - datetime.strptime(
+                    df.loc[df["flight_leg_id"] == current_pair[-1][-1], "end_time"].values[
+                        0
+                    ],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+            )
+            >= timedelta(hours=10) and (
+                datetime.strptime(
+                    df.loc[
+                        df["flight_leg_id"] == duty[0], "start_time"
+                    ].values[0],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+                - datetime.strptime(
+                    df.loc[df["flight_leg_id"] == current_pair[-1][-1], "end_time"].values[
+                        0
+                    ],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+            )
+            <= timedelta(hours=12))
 
 def is_valid_pair(df, current_pair):
     # Implement conditions for pair validity
     # Ensure matching destination and departure airports, and time gaps
-    if len(current_pair) == 2:  # that is the number of duties
+    if len(current_pair) >= 2:
         return (
             df.loc[
                 df["flight_leg_id"] == current_pair[-1][0], "destination_airport"
@@ -33,70 +64,6 @@ def is_valid_pair(df, current_pair):
             == df.loc[
                 df["flight_leg_id"] == current_pair[0][-1], "departure_airport"
             ].values[0]
-        ) and (
-            datetime.strptime(
-                df.loc[df["flight_leg_id"] == current_pair[-1][0], "start_time"].values[
-                    0
-                ],
-                "%Y-%m-%d %H:%M:%S",
-            )
-            - datetime.strptime(
-                df.loc[df["flight_leg_id"] == current_pair[0][-1], "end_time"].values[
-                    0
-                ],
-                "%Y-%m-%d %H:%M:%S",
-            )
-        ) >= timedelta(
-            hours=2
-        )
-    elif len(current_pair) == 3:
-        return (
-            (
-                datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == current_pair[1][0], "start_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-                - datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == current_pair[0][-1], "end_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-            )
-            >= timedelta(hours=2)
-            and (
-                datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == current_pair[-1][0], "start_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-                - datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == current_pair[1][-1], "end_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-            )
-            >= timedelta(hours=2)
-            and (
-                df.loc[
-                    df["flight_leg_id"] == current_pair[0][-1], "destination_airport"
-                ].values[0]
-                == df.loc[
-                    df["flight_leg_id"] == current_pair[1][0], "departure_airport"
-                ].values[0]
-            )
-            and (
-                df.loc[
-                    df["flight_leg_id"] == current_pair[1][-1], "destination_airport"
-                ].values[0]
-                == df.loc[
-                    df["flight_leg_id"] == current_pair[-1][0], "departure_airport"
-                ].values[0]
-            )
         )
     else:
         return False
@@ -105,9 +72,6 @@ def is_valid_pair(df, current_pair):
 def generate_pairs():
     # reading the dataframe
     df = pd.read_csv("data/flight_legs/data.csv")
-    df = df.head(50)
-    # df["start_time"] = pd.to_datetime(df["start_time"], format="%Y-%m-%d %H:%M:%S")
-    # df["end_time"] = pd.to_datetime(df["end_time"], format="%Y-%m-%d %H:%M:%S")
     # Initialize
     # read the pairs as list of lists
     # Open the file in read mode

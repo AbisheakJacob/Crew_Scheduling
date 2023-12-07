@@ -14,119 +14,80 @@ def generate_duties_dfs(df, current_duty, valid_duty):
         return
 
     # Recursive DFS for each remaining flight leg
-    for flight_leg_id in df["flight_leg_id"]:
+    for flight_leg_id in df[df["departure_airport"] == df.loc[df["flight_leg_id"] == current_duty[-1], "destination_airport"].values[0]]['flight_leg_id']: # Space Constraint
         # Check if the leg can be added to the current pair
         # if is_valid_duty(df, current_duty.copy() + [flight_leg_id]):
-        current_duty.append(flight_leg_id)
-        generate_duties_dfs(df, current_duty, valid_duty)
-        current_duty.pop()  # Backtrack
+        if sub_df(df, current_duty, flight_leg_id):
+            current_duty.append(flight_leg_id)
+            generate_duties_dfs(df, current_duty, valid_duty)
+            current_duty.pop()  # Backtrack
 
+# function taking care of the time constraint and total time constraint
+def sub_df(df, current_duty, flight_leg_id):
+    return (((
+                datetime.strptime(
+                    df.loc[
+                        df["flight_leg_id"] == flight_leg_id, "start_time"
+                    ].values[0],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+                - datetime.strptime(
+                    df.loc[df["flight_leg_id"] == current_duty[-1], "end_time"].values[
+                        0
+                    ],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+            )
+            >= timedelta(hours=1)) and (
+                datetime.strptime(
+                    df.loc[
+                        df["flight_leg_id"] == flight_leg_id, "start_time"
+                    ].values[0],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+                - datetime.strptime(
+                    df.loc[df["flight_leg_id"] == current_duty[0], "start_time"].values[
+                        0
+                    ],
+                    "%Y-%m-%d %H:%M:%S",
+                )
+            )
+            <= timedelta(hours=10))
 
+# total time constraint and return to homebase constraint
 def is_valid_duty(df, current_duty):
     # Implement conditions for pair validity
     # Ensure matching destination and departure airports, and time gaps
-    if len(current_duty) == 2:
-        return (
-            (
+    return (
+        (
+            df.loc[
+                df["flight_leg_id"] == current_duty[-1], "destination_airport"
+            ].values[0]
+            == df.loc[
+                df["flight_leg_id"] == current_duty[0], "departure_airport"
+            ].values[0]
+        ) and (
+            datetime.strptime(
                 df.loc[
-                    df["flight_leg_id"] == current_duty[-1], "destination_airport"
-                ].values[0]
-                == df.loc[
-                    df["flight_leg_id"] == current_duty[0], "departure_airport"
-                ].values[0]
+                    df["flight_leg_id"] == current_duty[-1], "start_time"
+                ].values[0],
+                "%Y-%m-%d %H:%M:%S",
             )
-            and (
-                datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == current_duty[-1], "start_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-                - datetime.strptime(
-                    df.loc[df["flight_leg_id"] == current_duty[0], "end_time"].values[
-                        0
-                    ],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-            )
-            >= timedelta(hours=1)
-            and (
-                df.loc[
-                    df["flight_leg_id"] == current_duty[0], "destination_airport"
-                ].values[0]
-                == df.loc[
-                    df["flight_leg_id"] == current_duty[-1], "departure_airport"
-                ].values[0]
+            - datetime.strptime(
+                df.loc[df["flight_leg_id"] == current_duty[0], "start_time"].values[
+                    0
+                ],
+                "%Y-%m-%d %H:%M:%S",
             )
         )
-    elif len(current_duty) == 3:
-        return (
-            (
-                df.loc[
-                    df["flight_leg_id"] == current_duty[-1], "destination_airport"
-                ].values[0]
-                == df.loc[
-                    df["flight_leg_id"] == current_duty[0], "departure_airport"
-                ].values[0]
-            )
-            and (
-                datetime.strptime(
-                    df.loc[df["flight_leg_id"] == current_duty[1], "start_time"].values[
-                        0
-                    ],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-                - datetime.strptime(
-                    df.loc[df["flight_leg_id"] == current_duty[0], "end_time"].values[
-                        0
-                    ],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-            )
-            >= timedelta(hours=1)
-            and (
-                datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == current_duty[-1], "start_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-                - datetime.strptime(
-                    df.loc[df["flight_leg_id"] == current_duty[1], "end_time"].values[
-                        0
-                    ],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-            )
-            >= timedelta(hours=1)
-            and (
-                df.loc[
-                    df["flight_leg_id"] == current_duty[0], "destination_airport"
-                ].values[0]
-                == df.loc[
-                    df["flight_leg_id"] == current_duty[1], "departure_airport"
-                ].values[0]
-            )
-            and (
-                df.loc[
-                    df["flight_leg_id"] == current_duty[1], "destination_airport"
-                ].values[0]
-                == df.loc[
-                    df["flight_leg_id"] == current_duty[-1], "departure_airport"
-                ].values[0]
-            )
-        )
-    else:
-        return False
+        <= timedelta(hours=10))
 
 
 def generate_duties():
     # reading the dataframe
     df = pd.read_csv("data/flight_legs/data.csv")
-    df = df.head(50)
-    # df["start_time"] = pd.to_datetime(df["start_time"], format="%Y-%m-%d %H:%M:%S")
-    # df["end_time"] = pd.to_datetime(df["end_time"], format="%Y-%m-%d %H:%M:%S")
-    # Initialize
+
+    # Create an empty list to hold the duties
     valid_duty_dfs = []
 
     # Start DFS from each flight leg
