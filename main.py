@@ -16,7 +16,7 @@ def main():
     if uploaded_file is not None:
         # Read the CSV file into a DataFrame
         df = pd.read_csv(uploaded_file)
-        df.to_csv("data/flight_legs/data.csb", index=False)
+        df.to_csv("data/flight_legs/data.csv", index=False)
 
         # Display the original DataFrame
         st.subheader("Original Data:")
