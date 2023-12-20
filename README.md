@@ -57,6 +57,7 @@ The team will obtain clarity on the various factors involved by conducting theor
 7. Jonathan Nillius: Deep Learning in State of the Art Airline Crew Rostering Algorithms. Department of Computer Science and Engineering, CHALMERS UNIVERSITY OF TECHNOLOGY, UNIVERSITY OF GOTHENBURG, Gothenburg, Sweden 2022
 
 ## Crew Pairing
+
 A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base. 
 ![Crew Pairing flowchart](/00_resources/images/Crew_Pairing.png)
 
