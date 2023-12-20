@@ -63,7 +63,6 @@ The team will obtain clarity on the various factors involved by conducting theor
 
 ## Crew Pairing
 A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base. 
-
 ![Crew Pairing flowchart](/00_resources/images/Crew_Pairing.png)
 
 # Depth First Search
@@ -90,4 +89,5 @@ The objective is to minimise the time span of pairing, covering all the flight l
 
 ### Column Generation
 Column Generation is the most widely adopted technique which is proven for efficiency solving large scale crew pairing optimization problems. Column Generation involves iteratively generating and adding crew pairings (columns) to the solution, focusing on a reduced cost. The initial set may consist of basic crew pairings that meet legal and operational requirements. Subsequently, the algorithm identifies and adds new pairings that enhance the overall schedule, converge to an optimal solution.
+![Column_Generation_flowchart](/00_resources/images/Column_Generation.png)
 
