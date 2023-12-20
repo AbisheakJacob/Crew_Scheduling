@@ -60,6 +60,14 @@ The team will obtain clarity on the various factors involved by conducting theor
 A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base. 
 ![Crew Pairing flowchart](/00_resources/images/Crew_Pairing.png)
 
+## Terminologies
+- Flight leg - A nonstop flight segment. Each flight leg is characterized by five features: the flight number, the origin airport, the destination airport, the departure time, and the arrival time.
+
+- Flight Duty - A sequence of consecutive air legs comprising a working day for a single crew member. Two consecutive duties should begin and end at the same airport. Legs are separated by sit time to a minimum limit of 60 minutes.
+
+- Pairing -  A sequence of duties for an unspecified crew member that starts and ends at a base. Pairings typically last 4–5 days.
+
+
 # Depth First Search
 The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if possible, else by backtracking. 
 
