@@ -102,5 +102,5 @@ Column Generation is the most widely adopted technique which is proven for effic
 
 ### Genetic Algorithm
 Population-based probabilistic-search heuristics, for which enumeration and handling of the entire pairing set is computationally-tractable.
-
+![Genetic_Algorithm_Steps](/00_resources/images/Genetic_Algorithm.png)
 
