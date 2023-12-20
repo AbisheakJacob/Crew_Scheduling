@@ -72,3 +72,9 @@ function generate_duties(current_duty, duties):
       generate_duties(current_duty, duties)
       current_duty.pop()
 ```
+
+
+
+![image](/00_resources/images/col_gen_algo.png)
+
+
