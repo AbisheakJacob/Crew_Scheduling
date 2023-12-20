@@ -94,7 +94,7 @@ function generate_duties(current_duty, duties):
 The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
 ![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
 
-## Algorithms for Optimization of Crew Pairing
+## Algorithms for the Optimization of Crew Pairing
 The objective is to minimise the time span of pairing, covering all the flight legs.
 
 ### Set Partitioning
