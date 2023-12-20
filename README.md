@@ -24,15 +24,15 @@ In the airline industry crew costs are second only to fuel costs and any reducti
 
 ## Project Objectives
 
-Minimize crew costs (whilst maximizing preferences)
+   1. Minimize crew costs (whilst maximizing preferences)
 
-  - Automate crew pairing and assignment based on predefined criteria such as flight schedules, crew availability, and seniority.
+   2. Automate crew pairing and assignment based on predefined criteria such as flight schedules, crew availability, and seniority.
 
-  - Integration with existing crew management systems and databases.
+   3. Integration with existing crew management systems and databases.
 
-  - User-friendly interface for crew members and managers to view and manage schedules.
+   4. User-friendly interface for crew members and managers to view and manage schedules.
 
-  - The final model is developed using python and is deployed using frameworks like Streamlit.
+   5. The final model is developed using python and is deployed using frameworks like Streamlit.
 
 ## Project Scope
 
@@ -67,6 +67,7 @@ A crew pairing is a sequence of flight legs, within the same fleet, that starts 
 ![Crew Pairing flowchart](/00_resources/images/Crew_Pairing.png)
 
 ## Pairing Generation
+
 The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
 ![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
 
@@ -85,6 +86,7 @@ The pairing generation process uses depth first search algorithm and is divided 
 - **Cost Matrix** - It is the cost associated with each possible pairing quantified in terms of time (flying time and sit time) in hours.
 
 ## Depth First Search
+
 The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if possible, else by backtracking. 
 
 ### Depth-First Search Algorithm
@@ -100,16 +102,20 @@ function generate_duties(current_duty, duties):
 ```
 
 ## Algorithms for the Optimization of Crew Pairing
+
 The objective is to minimise the time span of pairing, covering all the flight legs.
 
 ### Set Partitioning
+
 An approach for optimization problems where the goal is to select the subset of pairings to minimize a cost function while satisfying the constraint of covering each flight leg exactly once.
 
 ### Column Generation
+
 Column Generation is the most widely adopted technique which is proven for efficiency solving large scale crew pairing optimization problems. Column Generation involves iteratively generating and adding crew pairings (columns) to the solution, focusing on a reduced cost. The initial set may consist of basic crew pairings that meet legal and operational requirements. Subsequently, the algorithm identifies and adds new pairings that enhance the overall schedule, converge to an optimal solution.
 ![Column_Generation_flowchart](/00_resources/images/Column_Generation.png)
 
 ### Genetic Algorithm
+
 Population-based probabilistic-search heuristics, for which enumeration and handling of the entire pairing set is computationally-tractable.
 
 ![Genetic_Algorithm_Steps](/00_resources/images/Genetic_Algorithm.png)
