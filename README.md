@@ -74,6 +74,9 @@ A crew pairing is a sequence of flight legs, within the same fleet, that starts 
 
 - **Cost Matrix** - It is the cost associated with each possible pairing quantified in terms of time (flying time and sit time) in hours.
 
+## Pairing Generation
+The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
+![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
 
 ## Depth First Search
 The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if possible, else by backtracking. 
@@ -89,10 +92,6 @@ function generate_duties(current_duty, duties):
       generate_duties(current_duty, duties)
       current_duty.pop()
 ```
-
-## Pairing Generation
-The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
-![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
 
 ## Algorithms for the Optimization of Crew Pairing
 The objective is to minimise the time span of pairing, covering all the flight legs.
