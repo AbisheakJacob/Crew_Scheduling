@@ -21,22 +21,20 @@ Crew Scheduling Problem is a part of the complex Airline Planning Problem. Becau
 3. Maintenance Routing Problem
 
 4. Crew Scheduling Problem
-
-a. Crew Pairing
-
-b. Crew Assignment
+    - Crew Pairing
+    - Crew Assignment
 
 ## Project Objectives
 
-· Minimize crew costs (whilst maximizing preferences)
+  -  Minimize crew costs (whilst maximizing preferences)
 
-· Automate crew pairing and assignment based on predefined criteria such as flight schedules, crew availability, and seniority.
+  - Automate crew pairing and assignment based on predefined criteria such as flight schedules, crew availability, and seniority.
 
-· Integration with existing crew management systems and databases.
+  - Integration with existing crew management systems and databases.
 
-· User-friendly interface for crew members and managers to view and manage schedules.
+  - User-friendly interface for crew members and managers to view and manage schedules.
 
-· The final model is developed using python and is deployed using frameworks like Streamlit or Flask.
+  - The final model is developed using python and is deployed using frameworks like Streamlit or Flask.
 
 ## Project Scope
 
