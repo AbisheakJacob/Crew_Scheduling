@@ -61,7 +61,7 @@ The team will obtain clarity on the various factors involved by conducting theor
 
 6. Divyam Aggarwal, Dhish Kumar Saxena, Thomas Back, and Michael Emmerich: Real-World Airline Crew Pairing Optimization: Customized Genetic Algorithm versus Column Generation Method. arXiv:2003.03792v2 [cs.NE], 27 May 2023
 
-7.Jonathan Nillius: Deep Learning in State of the Art Airline Crew Rostering Algorithms. Department of Computer Science and Engineering, CHALMERS UNIVERSITY OF TECHNOLOGY, UNIVERSITY OF GOTHENBURG, Gothenburg, Sweden 2022
+7. Jonathan Nillius: Deep Learning in State of the Art Airline Crew Rostering Algorithms. Department of Computer Science and Engineering, CHALMERS UNIVERSITY OF TECHNOLOGY, UNIVERSITY OF GOTHENBURG, Gothenburg, Sweden 2022
 
 
 ## Crew Pairing
