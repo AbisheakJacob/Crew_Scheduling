@@ -49,11 +49,25 @@ The team will obtain clarity on the various factors involved by conducting theor
 2. The Fleet Types are already assigned to specific flights.
 
 ## Literature Review
+1. Harry Kornilakis and Panagiotis Stamatopoulos, Crew Pairing Optimization with Genetic Algorithms, Department of Informatics and Telecommunications, University of Athens, Panepistimiopolis, 157 84 Athens, Greece.​
+
+2. Xin Wen, Xuting Sun, Yige Sun, Xiaohang Yue, Airline crew scheduling: Models and algorithms, Transportation Research Part E 149 (2021)​
+
+3. Cynthia Barnart, Ellis L. Johnson, Diego Klabjan, George L. Nemhauser, Airline Crew Scheduling, Researchgate Publication number: 227105914, January 2003​
+
+4. Niklas Kohl and Stefan E. Karisch, Airline Crew Rostering: Problem Types, Modelling, and Optimization, Annals of Operations Research 127, 223-257, 2004​
+
+5. Shengzhi Shao, Integrated Aircraft Fleeting, Routing, and Crew Pairing Models and Algorithms for the Airline Industry, Virginia Polytechnic Institute and State University, 2012
+
+6. Divyam Aggarwal, Dhish Kumar Saxena, Thomas Back, and Michael Emmerich: Real-World Airline Crew Pairing Optimization: Customized Genetic Algorithm versus Column Generation Method. arXiv:2003.03792v2 [cs.NE], 27 May 2023
+
+7.Jonathan Nillius: Deep Learning in State of the Art Airline Crew Rostering Algorithms. Department of Computer Science and Engineering, CHALMERS UNIVERSITY OF TECHNOLOGY, UNIVERSITY OF GOTHENBURG, Gothenburg, Sweden 2022
+
+
+## Crew Pairing
 In the initial phase, we conducted exploratory research to understand the intricacies of the airline industry and formulated a business requirement document pertaining to crew scheduling. Crew Scheduling is defined as the problem of assigning a group of workers (a crew) to a set of tasks. Crew scheduling is divided into two- crew pairing and crew rostering. A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base. Crew rostering is the process of assigning crews to crew pairings based on preferences and seniority. During this stage, we delved into various terminologies including flight legs, flight duties, pairings; and algorithms, including dynamic programming, depth-first search, and nearest neighbor, for pairing generation. Upon comparison, we determined that depth-first search is the most suitable for effective pairing generation. The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if 
 possible, else by backtracking.
 Additionally, we explored the optimization of crew pairing through set partitioning, involving a master problem and a column generation subproblem. The objective was to minimize costs associated with the time span of pairings, ensuring comprehensive coverage of all unique flight legs.
-
-## Crew Pairing
 Initially, our focus is directed towards a specific subset within the broader scope of crew scheduling - Crew Pairing. 
 Hypothetical data for the flight legs within crew pairings has been generated.
 The pairing generation process utilizes the Depth-First Search Algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
