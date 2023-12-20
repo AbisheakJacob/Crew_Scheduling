@@ -58,6 +58,7 @@ The team will obtain clarity on the various factors involved by conducting theor
 ## Crew Pairing
 
 A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base. 
+
 ![Crew Pairing flowchart](/00_resources/images/Crew_Pairing.png)
 
 ## Terminologies
@@ -102,5 +103,6 @@ Column Generation is the most widely adopted technique which is proven for effic
 
 ### Genetic Algorithm
 Population-based probabilistic-search heuristics, for which enumeration and handling of the entire pairing set is computationally-tractable.
+
 ![Genetic_Algorithm_Steps](/00_resources/images/Genetic_Algorithm.png)
 
