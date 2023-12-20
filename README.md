@@ -1,7 +1,9 @@
 # Indian Airline Sector
+
 The Indian airline sector is currently experiencing a boom with an annual growth rate of 47.05%.
 
 ## Types of Airline Planning
+
 1. Schedule Design Problem  
 
 2. Fleet Assignment Problem  
@@ -13,14 +15,16 @@ The Indian airline sector is currently experiencing a boom with an annual growth
    - Crew Assignment 
 
 ## Crew Scheduling
+
 Crew Scheduling is defined as the problem of assigning a group of workers (a crew) to a set of tasks. 
 
 ### Why Crew Scheduling?
+
 In the airline industry crew costs are second only to fuel costs and any reduction in crew costs will result in saving millions of dollars for the company.
 
 ## Project Objectives
 
-  -  Minimize crew costs (whilst maximizing preferences)
+Minimize crew costs (whilst maximizing preferences)
 
   - Automate crew pairing and assignment based on predefined criteria such as flight schedules, crew availability, and seniority.
 
@@ -41,6 +45,7 @@ The team will obtain clarity on the various factors involved by conducting theor
 2. The Fleet Types are already assigned to specific flights.
 
 ## Literature Review
+
 1. Harry Kornilakis and Panagiotis Stamatopoulos, Crew Pairing Optimization with Genetic Algorithms, Department of Informatics and Telecommunications, University of Athens, Panepistimiopolis, 157 84 Athens, Greece.​
 
 2. Xin Wen, Xuting Sun, Yige Sun, Xiaohang Yue, Airline crew scheduling: Models and algorithms, Transportation Research Part E 149 (2021)​
