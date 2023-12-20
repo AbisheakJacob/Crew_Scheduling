@@ -34,7 +34,7 @@ Crew Scheduling Problem is a part of the complex Airline Planning Problem. Becau
 
   - User-friendly interface for crew members and managers to view and manage schedules.
 
-  - The final model is developed using python and is deployed using frameworks like Streamlit or Flask.
+  - The final model is developed using python and is deployed using frameworks like Streamlit.
 
 ## Project Scope
 
