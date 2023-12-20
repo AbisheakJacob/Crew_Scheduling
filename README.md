@@ -61,7 +61,12 @@ A crew pairing is a sequence of flight legs, within the same fleet, that starts 
 
 ![Crew Pairing flowchart](/00_resources/images/Crew_Pairing.png)
 
+## Pairing Generation
+The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
+![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
+
 ## Terminologies
+
 - **Flight leg** - A nonstop flight segment. Each flight leg is characterized by five features: the flight number, the origin airport, the destination airport, the departure time, and the arrival time.
 
 - **Flight Duty** - A sequence of consecutive air legs comprising a working day for a single crew member. Two consecutive duties should begin and end at the same airport. Legs are separated by sit time to a minimum limit of 60 minutes.
@@ -73,10 +78,6 @@ A crew pairing is a sequence of flight legs, within the same fleet, that starts 
 - **Pairing Generation** - Following the duty generation, possible pairings are generated from flight duties, ensuring that each flight leg is covered by at least one pairing, adhering to the constraints.
 
 - **Cost Matrix** - It is the cost associated with each possible pairing quantified in terms of time (flying time and sit time) in hours.
-
-## Pairing Generation
-The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
-![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
 
 ## Depth First Search
 The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if possible, else by backtracking. 
