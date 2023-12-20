@@ -75,10 +75,10 @@ A crew pairing is a sequence of flight legs, within the same fleet, that starts 
 - **Cost Matrix** - It is the cost associated with each possible pairing quantified in terms of time (flying time and sit time) in hours.
 
 
-# Depth First Search
+## Depth First Search
 The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if possible, else by backtracking. 
 
-## Depth-First Search Algorithm
+### Depth-First Search Algorithm
 ```
 function generate_duties(current_duty, duties):  
   if current_duty is valid:
