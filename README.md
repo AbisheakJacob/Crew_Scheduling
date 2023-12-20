@@ -1,28 +1,22 @@
 # Indian Airline Sector
 The indian airline sector is currently experiencing a boom with an annual growth rate of 47.05%.
 
+# Types of Airline Planning
+1. Schedule Design Problem  
+
+2. Fleet Assignment Problem  
+
+3. Maintenance Routing Problem  
+
+4. Crew Scheduling Problem - 
+   - Crew Pairing
+   - Crew Assignment 
+
 # Crew Scheduling
-Crew Scheduling is defined as the problem of assigning a group of workers (a crew) to a set of tasks. Crew scheduling is used in various industries where there is a need to efficiently manage and schedule the work shifts and tasks of a workforce, especially in industries with shift-based or continuous operations. Some industries that heavily rely on crew scheduling for their operations include, Airlines, Railways, Hospitals, Hospitality, etc.
+Crew Scheduling is defined as the problem of assigning a group of workers (a crew) to a set of tasks. 
 
-The Airline industry is a primary example for crew scheduling because of the following reasons:
-
-1. They have many elements that are common to many crew scheduling problems.
-
-2. They are true planning problems
-
-3. The impact of better crew scheduling is very high because of very high salaries in this sector.
-
-Crew Scheduling Problem is a part of the complex Airline Planning Problem. Because of the complexity of the size and complexity of this rich problem, they are solved in the order of,
-
-1. Schedule Design Problem
-
-2. Fleet Assignment Problem
-
-3. Maintenance Routing Problem
-
-4. Crew Scheduling Problem
-    - Crew Pairing
-    - Crew Assignment
+## Why Crew Schedulung?
+In the airline industry crew costs are second only to fuel costs and any reduction in crew costs will result in saving millions of dollars for the company.
 
 ## Project Objectives
 
