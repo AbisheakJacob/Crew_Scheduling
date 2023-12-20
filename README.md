@@ -85,6 +85,9 @@ function generate_duties(current_duty, duties):
 The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
 ![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
 
+## Algorithms for Optimization of Crew Pairing
+The objective is to minimise the time span of pairing, covering all the flight legs.
+
 ### Column Generation
 Column Generation is the most widely adopted technique which is proven for efficiency solving large scale crew pairing optimization problems. Column Generation involves iteratively generating and adding crew pairings (columns) to the solution, focusing on a reduced cost. The initial set may consist of basic crew pairings that meet legal and operational requirements. Subsequently, the algorithm identifies and adds new pairings that enhance the overall schedule, converge to an optimal solution.
 
