@@ -1,7 +1,7 @@
 # Indian Airline Sector
 The indian airline sector is currently experiencing a boom with an annual growth rate of 47.05%.
 
-# Crew_Scheduling
+# Crew Scheduling
 Crew Scheduling is defined as the problem of assigning a group of workers (a crew) to a set of tasks. Crew scheduling is used in various industries where there is a need to efficiently manage and schedule the work shifts and tasks of a workforce, especially in industries with shift-based or continuous operations. Some industries that heavily rely on crew scheduling for their operations include, Airlines, Railways, Hospitals, Hospitality, etc.
 
 The Airline industry is a primary example for crew scheduling because of the following reasons:
@@ -83,3 +83,5 @@ function generate_duties(current_duty, duties):
 
 ### Pairing Generation
 The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
+![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
+
