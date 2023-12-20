@@ -90,7 +90,7 @@ function generate_duties(current_duty, duties):
       current_duty.pop()
 ```
 
-### Pairing Generation
+## Pairing Generation
 The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
 ![Pairing_Generation_Steps](/00_resources/images/Pairing_Generation.png)
 
