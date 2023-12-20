@@ -10,8 +10,8 @@ The Indian airline sector is currently experiencing a boom with an annual growth
 
 3. Maintenance Routing Problem  
 
-4. Crew Scheduling Problem - 
-   - Crew Pairing
+4. Crew Scheduling Problem -
+   -  Crew Pairing
    - Crew Assignment 
 
 ## Crew Scheduling
