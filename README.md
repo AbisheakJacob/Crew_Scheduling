@@ -15,7 +15,7 @@ The indian airline sector is currently experiencing a boom with an annual growth
 ## Crew Scheduling
 Crew Scheduling is defined as the problem of assigning a group of workers (a crew) to a set of tasks. 
 
-### Why Crew Schedulung?
+### Why Crew Scheduling?
 In the airline industry crew costs are second only to fuel costs and any reduction in crew costs will result in saving millions of dollars for the company.
 
 ## Project Objectives
