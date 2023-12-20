@@ -63,8 +63,7 @@ The team will obtain clarity on the various factors involved by conducting theor
 
 
 ## Crew Pairing
-In the initial phase, we conducted exploratory research to understand the intricacies of the airline industry and formulated a business requirement document pertaining to crew scheduling. Crew Scheduling is defined as the problem of assigning a group of workers (a crew) to a set of tasks. Crew scheduling is divided into two- crew pairing and crew rostering. A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base. Crew rostering is the process of assigning crews to crew pairings based on preferences and seniority. During this stage, we delved into various terminologies including flight legs, flight duties, pairings; and algorithms, including dynamic programming, depth-first search, and nearest neighbor, for pairing generation. Upon comparison, we determined that depth-first search is the most suitable for effective pairing generation. The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if 
-possible, else by backtracking.
+A crew pairing is a sequence of flight legs, within the same fleet, that starts and ends at the same crew base. The DFS algorithm is a recursive algorithm that uses the idea of backtracking. 
 Additionally, we explored the optimization of crew pairing through set partitioning, involving a master problem and a column generation subproblem. The objective was to minimize costs associated with the time span of pairings, ensuring comprehensive coverage of all unique flight legs.
 Initially, our focus is directed towards a specific subset within the broader scope of crew scheduling - Crew Pairing. 
 Hypothetical data for the flight legs within crew pairings has been generated.
@@ -75,6 +74,9 @@ Start-city and End-city Constraints: The initial flight of a flight duty must co
 Sit-time Constraints: The sit-time between two consecutive flight legs in a flight duty must adhere to a minimum limit of 60 minutes.
 Following the duty generation, pairings are generated from flight duties, ensuring that each flight leg is covered by at least one pairing.
 A web user interface has been designed and implemented using Streamlit. This interface showcases flight duties, pairings, and a cost matrix quantified in terms of time (flying time and sit time in hours). The data is sourced from an Excel file, incorporating information about all the flight legs.
+
+# Depth First Search
+The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if possible, else by backtracking.
 
 ## Depth-First Search Algorithm
 ```
