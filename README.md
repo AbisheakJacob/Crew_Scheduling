@@ -97,6 +97,9 @@ The pairing generation process uses depth first search algorithm and is divided 
 ## Algorithms for Optimization of Crew Pairing
 The objective is to minimise the time span of pairing, covering all the flight legs.
 
+### Set Partitioning
+An approach for optimization problems where the goal is to select the subset of pairings to minimize a cost function while satisfying the constraint of covering each flight leg exactly once.
+
 ### Column Generation
 Column Generation is the most widely adopted technique which is proven for efficiency solving large scale crew pairing optimization problems. Column Generation involves iteratively generating and adding crew pairings (columns) to the solution, focusing on a reduced cost. The initial set may consist of basic crew pairings that meet legal and operational requirements. Subsequently, the algorithm identifies and adds new pairings that enhance the overall schedule, converge to an optimal solution.
 ![Column_Generation_flowchart](/00_resources/images/Column_Generation.png)
