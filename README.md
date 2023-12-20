@@ -1,5 +1,6 @@
 # Indian Airline Sector
 The indian airline sector is currently experiencing a boom with an annual growth rate of 47.05%.
+![Cost_Structure](/00_resources/images/Cost_Structure.png)
 
 ## Types of Airline Planning
 1. Schedule Design Problem  
