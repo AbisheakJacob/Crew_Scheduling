@@ -122,4 +122,4 @@ Population-based probabilistic-search heuristics, for which enumeration and hand
 
 ### Machine Learning
 Machine learning is gradually making its way into crew pairing optimization within the airline sector. While it may not be widely adopted at this point, it represents a significant advancement in the efficient scheduling of airline crews. Our preliminary research offered valuable insights into optimizing crew pairing through machine learning. 
-For further details, check CrewML, which is an open-source ML python package.
+For further details, check **CrewML**, which is an open-source ML python package.
