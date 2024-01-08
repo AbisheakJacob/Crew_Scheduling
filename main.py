@@ -1,6 +1,5 @@
 # importing the packages
 import numpy as np
-from numba import jit, cuda
 import pandas as pd
 import streamlit as st
 from data.data_creation import create_data
@@ -69,7 +68,6 @@ from timeit import default_timer as timer
 #             key="download_button",
 #         )
 
-@jit(nopython=True)
 def main():
     generate_duties()
 
