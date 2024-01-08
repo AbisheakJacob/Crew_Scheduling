@@ -1,77 +1,70 @@
-# generate pairings
-
 # importing the packages
+import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
+from itertools import chain
 
 
-def generate_pairs_dfs(df, duties, current_pair, valid_pairs):
-    # Recursive DFS for each remaining flight leg
-    if is_valid_pair(df, current_pair):
+def generate_pairs_dfs(np_arr, duties, current_pair, valid_pairs):
+    # Recursive np_arrS for each remaining flight leg
+    if is_valid_pair(np_arr, current_pair):
         valid_pairs.append(current_pair.copy())
         return
-    if len(current_pair) == 5:
+    if len(current_pair) == 2:
         return
 
-    # Recursive DFS for each remaining flight leg
-    for duty in [slist for slist in duties if (df.loc[df["flight_leg_id"] == current_pair[-1][-1], "destination_airport"].values[0] == df.loc[df["flight_leg_id"] == slist[0], "departure_airport"].values[0])]:
+    # Recursive np_arrS for each remaining flight leg
+    for duty in [duties[i] for i in range(len(duties)) if
+                 (np_arr[duties[i][0]][1] == np_arr[current_pair[-1][-1]][2]) and (
+                         np_arr[duties[i][0]][3] - np_arr[current_pair[-1][-1]][4] >= np.timedelta64(10, 'h') and (
+                         np_arr[duties[i][0]][3] - np_arr[current_pair[-1][-1]][4]) <= np.timedelta64(15,
+                                                                                                      'h'))]:  # return to homebase condition
         # Check if the leg can be added to the current pair
-        if sub_df(df,current_pair, duty):
-            current_pair.append(duty)
-            generate_pairs_dfs(df, duties, current_pair, valid_pairs)
-            current_pair.pop()  # Backtrack
+        # if sub_np_arr(np_arr,current_pair, duty):
+        current_pair.append(duty)
+        generate_pairs_dfs(np_arr, duties, current_pair, valid_pairs)
+        current_pair.pop()  # Backtrack
 
-# function taking care of the time constraint and total time constraint
-def sub_df(df, current_pair, duty):
-    return ((
-                datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == duty[0], "start_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-                - datetime.strptime(
-                    df.loc[df["flight_leg_id"] == current_pair[-1][-1], "end_time"].values[
-                        0
-                    ],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-            )
-            >= timedelta(hours=10) and (
-                datetime.strptime(
-                    df.loc[
-                        df["flight_leg_id"] == duty[0], "start_time"
-                    ].values[0],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-                - datetime.strptime(
-                    df.loc[df["flight_leg_id"] == current_pair[-1][-1], "end_time"].values[
-                        0
-                    ],
-                    "%Y-%m-%d %H:%M:%S",
-                )
-            )
-            <= timedelta(hours=12))
 
-def is_valid_pair(df, current_pair):
+def is_valid_pair(np_arr, current_pair):
     # Implement conditions for pair validity
     # Ensure matching destination and departure airports, and time gaps
     if len(current_pair) >= 2:
-        return (
-            df.loc[
-                df["flight_leg_id"] == current_pair[-1][0], "destination_airport"
-            ].values[0]
-            == df.loc[
-                df["flight_leg_id"] == current_pair[0][-1], "departure_airport"
-            ].values[0]
-        )
+        return ((np_arr[current_pair[-1][-1]][4] - np_arr[current_pair[0][0]][3]) >= np.timedelta64(18, 'h'))
     else:
         return False
+
+
+def save_info(valid_pair_dfs, np_arr):
+    # Open the file in write mode
+    with open(f"data/pairings/pairings.txt", "w") as file:
+        file.writelines(f"{item}\n" for item in valid_pair_dfs)
+
+    # create a zero np_array
+    pair_array = np.zeros((len(valid_pair_dfs), len(np_arr)))
+
+    # fill the values of the flight legs in each pairing with 1
+    for i, pair in enumerate(valid_pair_dfs):
+        pair_array[i, list(chain.from_iterable(pair))] = 1
+
+    # save the pair_array as a txt file
+    np.savetxt("data/pairings/pair_array.txt", pair_array, fmt="%d", delimiter=",")
+
+    # calculate the cost matrix from pair list
+    cost_list = [abs((np_arr[pair[-1][-1]][4] - np_arr[pair[0][0]][3]).total_seconds() / 3600) for pair in
+                 valid_pair_dfs]
+
+    with open(f"data/cost_matrix/cost.txt", "w") as file:
+        file.writelines(f"{item}\n" for item in cost_list)
 
 
 def generate_pairs():
     # reading the dataframe
     df = pd.read_csv("data/flight_legs/data.csv")
+    df['start_time'] = pd.to_datetime(df['start_time'], format="%Y-%m-%d %H:%M:%S")
+    df['end_time'] = pd.to_datetime(df['end_time'], format="%Y-%m-%d %H:%M:%S")
+
+    np_arr = df.to_numpy()
+
     # Initialize
     # read the pairs as list of lists
     # Open the file in read mode
@@ -86,54 +79,7 @@ def generate_pairs():
 
     # call the function to generate pairs
     for duty in duties:
-        generate_pairs_dfs(df, duties, [duty], valid_pair_dfs)
+        generate_pairs_dfs(np_arr, duties, [duty], valid_pair_dfs)
 
-        # Open the file in write mode
-    with open(f"data/pairings/pairings.txt", "w") as file:
-        # Write each item in the list to a new line
-        for item in valid_pair_dfs:
-            file.write(f"{item}\n")
-
-    # convert the file to a binary matrix csv file
-    # Create an empty dataframe for the pair matrix
-    pair_matrix = pd.DataFrame(
-        index=range(1, len(valid_pair_dfs) + 1), columns=df["flight_leg_id"]
-    )
-
-    # Fill the pair matrix based on flight leg combinations
-    for i, pair in enumerate(valid_pair_dfs):
-        for j, duty in enumerate(pair):
-            pair_matrix.loc[i + 1, pair[0]] = 1
-            pair_matrix.loc[i + 1, pair[1]] = 1
-            pair_matrix.loc[i + 1, pair[-1]] = 1
-
-    # Fill NaN values with 0
-    pair_matrix = pair_matrix.fillna(0)
-
-    # save the pair matrix as a csv filr
-    pair_matrix.to_csv("data/pairings/pair_matrix.csv", index=False)
-
-    # create a list to store the cost for the pairings
-    cost_list = []
-
-    # calculate the cost matrix from pair list
-    for pair in valid_pair_dfs:
-        cost_sec = datetime.strptime(
-            df.loc[df["flight_leg_id"] == pair[-1][-1], "end_time"].values[0],
-            "%Y-%m-%d %H:%M:%S",
-        ) - datetime.strptime(
-            df.loc[df["flight_leg_id"] == pair[0][0], "start_time"].values[0],
-            "%Y-%m-%d %H:%M:%S",
-        )
-
-        # Extract hours from the time difference
-        cost_hr = cost_sec.total_seconds() / 3600
-        cost_hr = abs(cost_hr)
-
-        cost_list.append(cost_hr)
-
-    # create the cost matrix
-    cost_matrix = pd.DataFrame(cost_list, columns=["cost"])
-
-    # save the pair matrix as a csv filr
-    cost_matrix.to_csv("data/cost_matrix/cost_matrix.csv", index=False)
+    # save the information into respective files
+    save_info(valid_pair_dfs, np_arr)
