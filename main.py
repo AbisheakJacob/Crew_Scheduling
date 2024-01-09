@@ -55,10 +55,11 @@ def generate():
     if st.button("Solve Using Column Generation"):
         # call the column generation function inside a spinner
         with st.spinner("Solving Problem..."):
-            column_gen()
+            idx = column_gen()
 
         # display the success message
         st.success("Problem Solved Successfully!")
+        st.write(idx)
 
 
 # the code embeds the functions into a streamlit application

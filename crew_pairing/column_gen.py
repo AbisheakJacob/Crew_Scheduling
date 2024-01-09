@@ -124,3 +124,5 @@ def column_gen():
 
         if time.time() - start_time >= timeout_seconds:
             break
+
+        return idx
