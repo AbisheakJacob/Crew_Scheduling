@@ -126,6 +126,7 @@ For further details, check **CrewML**, which is an open-source ML python package
 
 ## Column Generation
 We implemented column generation algorithm using ortools in python for crew pairing optimization.
+![Column Generation](/00_resources/images/Column_Generation_Algorithm.png)
 
 The algorithm consists of two main components: the Restricted Master Problem (RMP) and the Sub-Problem.
 
