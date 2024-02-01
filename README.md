@@ -164,10 +164,10 @@ The column generation process involves iteratively solving the RMP and Sub-Probl
 The algorithm starts with an initial set of pairs (controlled by ini_pair and increment) to ensure at least one feasible solution.
 
 **Main Loop:**
-The RMP is solved to obtain an optimal solution and identify the indices of the selected pairs.
-The Sub-Problem is solved to calculate the reduced cost matrix and find the pair with the least reduced cost.
-The index is updated by adding the pair with the least reduced cost.
-The loop continues until all reduced costs are non-negative or a timeout limit is reached.
+1. The RMP is solved to obtain an optimal solution and identify the indices of the selected pairs.
+2. The Sub-Problem is solved to calculate the reduced cost matrix and find the pair with the least reduced cost.
+3. The index is updated by adding the pair with the least reduced cost.
+4. The loop continues until all reduced costs are non-negative or a timeout limit is reached.
 
 **Usage:**
 To use the algorithm, provide the necessary data, such as the flight legs, pairings, and cost matrix, and then execute the main loop of the column generation algorithm. Adjust parameters like the initial pair size (ini_pair), increment, and timeout as needed.emented column generation algorithm using ortools in python for crew pairing optimization.
