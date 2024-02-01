@@ -293,6 +293,7 @@ The initial fine-tuning of the model has resulted in 5x increase in the speed of
         generate()
 
 **5. The script can be executed as the main entry point**
+
     # Call the main function when the script is executed
-if __name__ == "__main__":
+    if __name__ == "__main__":
     main()
