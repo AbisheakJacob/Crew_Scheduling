@@ -133,29 +133,29 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
 The RMP is a mixed-integer linear programming problem that aims to find an optimal combination of flight pairs from a reduced set. It creates binary allocation variables for each pair and includes constraints to ensure that each flight is assigned exactly once. The objective is to minimize the total cost of the selected pairs.
 
 Input:
-index: The indices of the initial set of pairs.
-num_flights: The total number of flights.
-pairings: A list of flight pairings.
-cost_matrix: The cost matrix representing the cost of each pairing.
+- index: The indices of the initial set of pairs.
+- num_flights: The total number of flights.
+- pairings: A list of flight pairings.
+- cost_matrix: The cost matrix representing the cost of each pairing.
 
 Output:
-status: The status of the solver (0 if solved successfully).
-objective_value: The optimal objective value.
-optimal_index: The indices of the final selected pairs.
+- status: The status of the solver (0 if solved successfully).
+- objective_value: The optimal objective value.
+- optimal_index: The indices of the final selected pairs.
 
 **2. Sub-Problem:**
 The Sub-Problem is a linear programming problem that aims to find the reduced cost matrix and the index of the pair with the least reduced cost. It uses dual values from the RMP solution to calculate the reduced costs.
 
 Input:
-pairings: A list of flight pairings.
-cost_matrix: The cost matrix representing the cost of each pairing.
-index: The indices of the current set of pairs.
-num_pairs: The total number of pairs.
-num_flights: The total number of flights.
+- pairings: A list of flight pairings.
+- cost_matrix: The cost matrix representing the cost of each pairing.
+- index: The indices of the current set of pairs.
+- num_pairs: The total number of pairs.
+- num_flights: The total number of flights.
 
 Output:
-red_cost_mtx: The reduced cost matrix.
-least_red_cost_index: The index of the pair with the least reduced cost.
+- red_cost_mtx: The reduced cost matrix.
+- least_red_cost_index: The index of the pair with the least reduced cost.
 
 **Column Generation Loop:**
 The column generation process involves iteratively solving the RMP and Sub-Problem until all reduced costs are non-negative. The algorithm initializes with a reduced set of pairs and dynamically adds pairs with negative reduced costs until convergence.
