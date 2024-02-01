@@ -123,3 +123,76 @@ Population-based probabilistic-search heuristics, for which enumeration and hand
 ### Machine Learning
 Machine learning is gradually making its way into crew pairing optimization within the airline sector. While it may not be widely adopted at this point, it represents a significant advancement in the efficient scheduling of airline crews. Our preliminary research offered valuable insights into optimizing airline crew pairing through machine learning. 
 For further details, check **CrewML**, which is an open-source ML python package.
+
+## Column Generation
+We implemented column generation algorithm using ortools in python for crew pairing optimization.
+![Column Generation](/00_resources/images/Column_Generation_Algorithm.png)
+
+The algorithm consists of two main components: the Restricted Master Problem (RMP) and the Sub-Problem.
+
+**1. Restricted Master Problem (RMP):**
+The RMP is a mixed-integer linear programming problem that aims to find an optimal combination of flight pairs from a reduced set. It creates binary allocation variables for each pair and includes constraints to ensure that each flight is assigned exactly once. The objective is to minimize the total cost of the selected pairs.
+
+Input:
+- index: The indices of the initial set of pairs.
+- num_flights: The total number of flights.
+- pairings: A list of flight pairings.
+- cost_matrix: The cost matrix representing the cost of each pairing.
+
+Output:
+- status: The status of the solver (0 if solved successfully).
+- objective_value: The optimal objective value.
+- optimal_index: The indices of the final selected pairs.
+
+**2. Sub-Problem:**
+The Sub-Problem is a linear programming problem that aims to find the reduced cost matrix and the index of the pair with the least reduced cost. It uses dual values from the RMP solution to calculate the reduced costs.
+
+Input:
+- pairings: A list of flight pairings.
+- cost_matrix: The cost matrix representing the cost of each pairing.
+- index: The indices of the current set of pairs.
+- num_pairs: The total number of pairs.
+- num_flights: The total number of flights.
+
+Output:
+- red_cost_mtx: The reduced cost matrix.
+- least_red_cost_index: The index of the pair with the least reduced cost.
+
+**Column Generation Loop:**
+The column generation process involves iteratively solving the RMP and Sub-Problem until all reduced costs are non-negative. The algorithm initializes with a reduced set of pairs and dynamically adds pairs with negative reduced costs until convergence.
+
+**Initialization:**
+The algorithm starts with an initial set of pairs (controlled by ini_pair and increment) to ensure at least one feasible solution.
+
+**Main Loop:**
+1. The RMP is solved to obtain an optimal solution and identify the indices of the selected pairs.
+2. The Sub-Problem is solved to calculate the reduced cost matrix and find the pair with the least reduced cost.
+3. The index is updated by adding the pair with the least reduced cost.
+4. The loop continues until all reduced costs are non-negative or a timeout limit is reached.
+
+**Usage:**
+To use the algorithm, provide the necessary data, such as the flight legs, pairings, and cost matrix, and then execute the main loop of the column generation algorithm. Adjust parameters like the initial pair size (ini_pair), increment, and timeout as needed.
+
+**Results:**
+Column Generation is able to provide a 2.4x decrease in time taken to final the optimal set of pairings. The use of limited number of pairings reduces the computation requirements tremendously. 
+
+This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
+
+## Recommendations
+- Numba, cuda integration for nopython and parallel processing.​
+- Using shortest path algorithm for column generation sub problem.​
+- Increase the robustness of the model.​
+- Use code optimization techniques.
+
+## Fine-Tuning the model
+1. Elimination of Redundant Variables
+2. In Time Generation of Pair Matrix and Cost Matrix
+3. Streamlit Deployment
+4. Real-Time Data Testing
+5. Scalability
+6. Parallel Processing
+7. Web Scrapping Bot
+8. Pyomo implementation
+
+The initial fine-tuning of the model has resulted in 5x increase in the speed of the model, significant reduction in memory usage.
+
