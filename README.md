@@ -171,7 +171,7 @@ The algorithm starts with an initial set of pairs (controlled by ini_pair and in
 4. The loop continues until all reduced costs are non-negative or a timeout limit is reached.
 
 **Usage:**
-To use the algorithm, provide the necessary data, such as the flight legs, pairings, and cost matrix, and then execute the main loop of the column generation algorithm. Adjust parameters like the initial pair size (ini_pair), increment, and timeout as needed.emented column generation algorithm using ortools in python for crew pairing optimization.
+To use the algorithm, provide the necessary data, such as the flight legs, pairings, and cost matrix, and then execute the main loop of the column generation algorithm. Adjust parameters like the initial pair size (ini_pair), increment, and timeout as needed.
 
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
 
