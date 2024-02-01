@@ -193,5 +193,6 @@ This implementation of the Column Generation algorithm provides an efficient app
 6. Parallel Processing
 7. Web Scrapping Bot
 8. Pyomo implementation
+
 The initial fine-tuning of the model has resulted in 5x increase in the speed of the model. Significant reduction in memory usage.
 
