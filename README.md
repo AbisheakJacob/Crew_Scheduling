@@ -259,6 +259,7 @@ from crew_pairing.column_gen import column_gen
         st.write(idx)
 
 **4. Users can either upload a CSV file or generate data within the application.**
+
     # Embed functions into a Streamlit application
    def main():
     # Title of the web application
