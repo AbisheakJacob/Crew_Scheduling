@@ -265,7 +265,7 @@ The initial fine-tuning of the model has resulted in 5x increase in the speed of
 **4. Users can either upload a CSV file or generate data within the application.**
 
     # Embed functions into a Streamlit application
-   def main():
+    def main():
     # Title of the web application
     st.title("Pairing Generation")
 
