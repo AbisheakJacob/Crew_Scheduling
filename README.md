@@ -207,9 +207,9 @@ from pairing_generation.duty_generation import generate_duties
 from pairing_generation.pairing_generation import generate_pairs
 from crew_pairing.column_gen import column_gen
 
-## Function to generate duties and pairs
 **2. Data preparation, duty generation, pairing generation, and column generation functions are implemented in separate modules.** 
-def generate():
+    # Function to generate duties and pairs
+    def generate():
     # Read the created data
     df = pd.read_csv("data/flight_legs/data.csv")
 
@@ -259,9 +259,9 @@ def generate():
         st.success("Problem Solved Successfully!")
         st.write(idx)
 
-### Embed functions into a Streamlit application
 **4. Users can either upload a CSV file or generate data within the application.**
-def main():
+    # Embed functions into a Streamlit application
+   def main():
     # Title of the web application
     st.title("Pairing Generation")
 
@@ -288,7 +288,7 @@ def main():
         # Call the generate function
         generate()
 
-### Call the main function when the script is executed
 **5. The script can be executed as the main entry point**
+    # Call the main function when the script is executed
 if __name__ == "__main__":
     main()
