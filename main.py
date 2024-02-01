@@ -12,24 +12,23 @@ from crew_pairing.column_gen import column_gen
 def generate():
     # read the created data
     df = pd.read_csv("data/flight_legs/data.csv")
+
     # display the data
     st.subheader("Flight Legs Data:")
 
     # create a radio button to display the data
     data_option = st.radio("Display Data", ("Do Not Display", "Head", "Tail", "All"))
 
-    # if user selects Do Not Display
-    if data_option == "Do Not Display":
-        pass
-    # if user selects Head
-    elif data_option == "Head":
-        st.write(df.head())
-    # if user selects Tail
-    elif data_option == "Tail":
-        st.write(df.tail())
-    # if user selects All
-    elif data_option == "All":
-        st.write(df)
+    # Map user options to corresponding actions
+    options_map = {
+        "Do Not Display": None,
+        "Head": df.head(),
+        "Tail": df.tail(),
+        "All": df,
+    }
+
+    # display the data based on the user option
+    st.write(options_map[data_option])
 
     # create a button to generate duties
     if st.button("Generate Duties"):
