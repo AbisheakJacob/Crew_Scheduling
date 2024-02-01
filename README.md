@@ -198,13 +198,15 @@ The initial fine-tuning of the model has resulted in 5x increase in the speed of
 
 ## Streamlit for Web Application
 **1. Import necessary packages** 
-import numpy as np
-import pandas as pd
-import streamlit as st
-from data.data_creation import create_data
-from pairing_generation.duty_generation import generate_duties
-from pairing_generation.pairing_generation import generate_pairs
-from crew_pairing.column_gen import column_gen
+
+    # Import necessary packages 
+    import numpy as np
+    import pandas as pd
+    import streamlit as st
+    from data.data_creation import create_data
+    from pairing_generation.duty_generation import generate_duties
+    from pairing_generation.pairing_generation import generate_pairs
+    from crew_pairing.column_gen import column_gen
 
 **2. Data preparation, duty generation, pairing generation, and column generation functions are implemented in separate modules.** 
     # Function to generate duties and pairs
