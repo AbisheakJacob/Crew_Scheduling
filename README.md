@@ -129,7 +129,7 @@ We implemented column generation algorithm using ortools in python for crew pair
 
 The algorithm consists of two main components: the Restricted Master Problem (RMP) and the Sub-Problem.
 
-**1. Restricted Master Problem (RMP)**
+**1. Restricted Master Problem (RMP):**
 The RMP is a mixed-integer linear programming problem that aims to find an optimal combination of flight pairs from a reduced set. It creates binary allocation variables for each pair and includes constraints to ensure that each flight is assigned exactly once. The objective is to minimize the total cost of the selected pairs.
 
 Input:
@@ -143,7 +143,7 @@ status: The status of the solver (0 if solved successfully).
 objective_value: The optimal objective value.
 optimal_index: The indices of the final selected pairs.
 
-**2. Sub-Problem**
+**2. Sub-Problem:**
 The Sub-Problem is a linear programming problem that aims to find the reduced cost matrix and the index of the pair with the least reduced cost. It uses dual values from the RMP solution to calculate the reduced costs.
 
 Input:
@@ -157,7 +157,7 @@ Output:
 red_cost_mtx: The reduced cost matrix.
 least_red_cost_index: The index of the pair with the least reduced cost.
 
-**Column Generation Loop**
+**Column Generation Loop:**
 The column generation process involves iteratively solving the RMP and Sub-Problem until all reduced costs are non-negative. The algorithm initializes with a reduced set of pairs and dynamically adds pairs with negative reduced costs until convergence.
 
 **Initialization:**
@@ -169,7 +169,7 @@ The Sub-Problem is solved to calculate the reduced cost matrix and find the pair
 The index is updated by adding the pair with the least reduced cost.
 The loop continues until all reduced costs are non-negative or a timeout limit is reached.
 
-**Usage**
+**Usage:**
 To use the algorithm, provide the necessary data, such as the flight legs, pairings, and cost matrix, and then execute the main loop of the column generation algorithm. Adjust parameters like the initial pair size (ini_pair), increment, and timeout as needed.emented column generation algorithm using ortools in python for crew pairing optimization.
 
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
