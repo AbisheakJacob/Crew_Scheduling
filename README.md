@@ -209,6 +209,7 @@ The initial fine-tuning of the model has resulted in 5x increase in the speed of
     from crew_pairing.column_gen import column_gen
 
 **2. Data preparation, duty generation, pairing generation, and column generation functions are implemented in separate modules.** 
+    
     # Function to generate duties and pairs
     def generate():
     # Read the created data
