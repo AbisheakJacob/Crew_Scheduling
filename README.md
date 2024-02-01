@@ -173,6 +173,15 @@ The algorithm starts with an initial set of pairs (controlled by ini_pair and in
 **Usage:**
 To use the algorithm, provide the necessary data, such as the flight legs, pairings, and cost matrix, and then execute the main loop of the column generation algorithm. Adjust parameters like the initial pair size (ini_pair), increment, and timeout as needed.
 
+**Results:**
+Column Generation is able to provide a 2.4x decrease in time taken to final the optimal set of pairings. The use of limited number of pairings reduces the computation requirements tremendously. 
+
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
+
+## Recommendations
+- Numba, cuda integration for nopython and parallel processing.​
+- Using shortest path algorithm for column generation sub problem.​
+- Increase the robustness of the model.​
+- Use code optimization techniques.
 
 
