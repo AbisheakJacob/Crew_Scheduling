@@ -242,6 +242,7 @@ The initial fine-tuning of the model has resulted in 5x increase in the speed of
         st.success("Duties Generated Successfully!")
 
 **3. Buttons are provided to trigger the generation of duties, pairs, and solving the problem using column generation.**
+    
     # Create a button to generate pairs
     if st.button("Generate Pairs"):
         # Call the generate pairs function inside a spinner
