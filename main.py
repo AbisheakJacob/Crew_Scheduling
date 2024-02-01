@@ -1,13 +1,11 @@
 # importing the packages
 import numpy as np
 import pandas as pd
-import time
 import streamlit as st
 from data.data_creation import create_data
 from pairing_generation.duty_generation import generate_duties
 from pairing_generation.pairing_generation import generate_pairs
 from crew_pairing.column_gen import column_gen
-from timeit import default_timer as timer
 
 
 # function to generate duties and pairs
@@ -64,7 +62,6 @@ def generate():
 
 # the code embeds the functions into a streamlit application
 def main():
-
     # title of the web application
     st.title("Pairing Generation")
 
@@ -80,16 +77,18 @@ def main():
             df = pd.read_csv(uploaded_file)
             df.to_csv("data/flight_legs/data.csv", index=False)
 
+            # call the generate function
             generate()
+
     # if the user selects the generate mode
     elif mode == "Generate":
         # call the create duties function
         create_data()
 
+        # call the generate function
+        generate()
+
 
 # call the main function with the initiation of the file
 if __name__ == "__main__":
-
-    start = timer()
     main()
-    print(timer()-start)
