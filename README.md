@@ -184,7 +184,7 @@ This implementation of the Column Generation algorithm provides an efficient app
 - Increase the robustness of the model.​
 - Use code optimization techniques.
 
-## Fine-Tuning the model
+## Fine-Tuning the Model
 1. Elimination of Redundant Variables
 2. In Time Generation of Pair Matrix and Cost Matrix
 3. Streamlit Deployment
@@ -196,3 +196,98 @@ This implementation of the Column Generation algorithm provides an efficient app
 
 The initial fine-tuning of the model has resulted in 5x increase in the speed of the model, significant reduction in memory usage.
 
+## Streamlit for Web Application
+**1. Import necessary packages** 
+import numpy as np
+import pandas as pd
+import streamlit as st
+from data.data_creation import create_data
+from pairing_generation.duty_generation import generate_duties
+from pairing_generation.pairing_generation import generate_pairs
+from crew_pairing.column_gen import column_gen
+
+## Function to generate duties and pairs
+**2. Data preparation, duty generation, pairing generation, and column generation functions are implemented in separate modules.** 
+def generate():
+    # Read the created data
+    df = pd.read_csv("data/flight_legs/data.csv")
+
+    # Display the flight legs data
+    st.subheader("Flight Legs Data:")
+
+    # Create a radio button to display a subset of the data
+    data_option = st.radio("Display Data", ("Do Not Display", "Head", "Tail", "All"))
+
+    # Map user options to corresponding actions
+    options_map = {
+        "Do Not Display": None,
+        "Head": df.head(),
+        "Tail": df.tail(),
+        "All": df,
+    }
+
+    # Display the data based on the user option
+    st.write(options_map[data_option])
+
+    # Create a button to generate duties
+    if st.button("Generate Duties"):
+        # Call the generate duties function inside a spinner
+        with st.spinner("Generating Duties..."):
+            generate_duties()
+
+        # Display the success message once the previous function is completed
+        st.success("Duties Generated Successfully!")
+
+**3. Buttons are provided to trigger the generation of duties, pairs, and solving the problem using column generation.**
+    # Create a button to generate pairs
+    if st.button("Generate Pairs"):
+        # Call the generate pairs function inside a spinner
+        with st.spinner("Generating Pairings..."):
+            generate_pairs()
+
+        # Display the success message
+        st.success("Pairings Generated Successfully!")
+
+    # Create a button to solve the problem using column generation
+    if st.button("Solve Using Column Generation"):
+        # Call the column generation function inside a spinner
+        with st.spinner("Solving Problem..."):
+            idx = column_gen()
+
+        # Display the success message and additional information
+        st.success("Problem Solved Successfully!")
+        st.write(idx)
+
+### Embed functions into a Streamlit application
+**4. Users can either upload a CSV file or generate data within the application.**
+def main():
+    # Title of the web application
+    st.title("Pairing Generation")
+
+    # Select box to choose the mode of data selection ("Upload" or "Generate")
+    mode = st.selectbox("Select the mode of data selection", ("Upload", "Generate"))
+
+    # If the user selects the upload mode
+    if mode == "Upload":
+        # Upload a CSV file through Streamlit
+        uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
+        if uploaded_file is not None:
+            # Read the CSV file into a DataFrame and save it to a predefined location
+            df = pd.read_csv(uploaded_file)
+            df.to_csv("data/flight_legs/data.csv", index=False)
+
+            # Call the generate function
+            generate()
+
+    # If the user selects the generate mode
+    elif mode == "Generate":
+        # Call the create duties function to prepare data
+        create_data()
+
+        # Call the generate function
+        generate()
+
+### Call the main function when the script is executed
+**5. The script can be executed as the main entry point**
+if __name__ == "__main__":
+    main()
