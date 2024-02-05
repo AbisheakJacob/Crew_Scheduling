@@ -50,7 +50,41 @@ Column Generation is the most widely adopted technique which is proven for effic
 
 ### Column Generation Algorithm
 The algorithm consists of two main components: the Restricted Master Problem (RMP) and the Sub-Problem.
+# define the restricted master problem
+def RMP(index, num_flights, pairings, cost_matrix):
+    pairings_rmp = [pairings[i] for i in index]
+    cost_matrix_rmp = cost_matrix[index].reshape(-1, 1)
 
+    # Initializing the MIP Solver
+    solver = pywraplp.Solver.CreateSolver("SAT")
+
+    # creating the binary allocation variable
+    x = np.array([solver.BoolVar("") for i in range(len(index))]).reshape(-1, 1)
+
+    # Adding the constraints
+    for i in range(num_flights):
+        solver.Add(
+            solver.Sum(
+                [x[j][0] * 1.0 for j in range(len(index)) if i in pairings_rmp[j]]
+            )
+            == 1.0
+        )
+
+    # Objective function
+    solver.Minimize(sum(cost_matrix_rmp[i][0] * x[i][0] for i in range(len(index))))
+
+    # Solve the problem
+    status = solver.Solve()
+
+    # find the values of the decision variable
+    x_values = [x[i][0].solution_value() for i in range(len(index))]
+
+    # find the indices of the final selected pairs
+    optimal_index = [
+        value for value, binary_value in zip(index, x_values) if binary_value == 1
+    ]
+
+    return status, solver.Objective().Value(), optimal_index
 
 **Results:**
 Column Generation is able to provide a 2.4x decrease in time taken to final the optimal set of pairings. The use of limited number of pairings reduces the computation requirements tremendously. 
