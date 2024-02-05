@@ -50,7 +50,8 @@ Column Generation is the most widely adopted technique which is proven for effic
 
 ### Column Generation Algorithm
 The algorithm consists of two main components: the Restricted Master Problem (RMP) and the Sub-Problem.
-# define the restricted master problem
+
+    # define the restricted master problem
 def RMP(index, num_flights, pairings, cost_matrix):
     pairings_rmp = [pairings[i] for i in index]
     cost_matrix_rmp = cost_matrix[index].reshape(-1, 1)
