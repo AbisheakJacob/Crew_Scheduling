@@ -75,5 +75,5 @@ This implementation of the Column Generation algorithm provides an efficient app
 
 The initial fine-tuning of the model has resulted in 5x increase in the speed of the model, significant reduction in memory usage.
 
-## Streamlit for Web Application
+# Streamlit for Web Application
 
