@@ -71,22 +71,6 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
             == 1.0
         )
 
-    # Objective function
-    solver.Minimize(sum(cost_matrix_rmp[i][0] * x[i][0] for i in range(len(index))))
-
-    # Solve the problem
-    status = solver.Solve()
-
-    # find the values of the decision variable
-    x_values = [x[i][0].solution_value() for i in range(len(index))]
-
-    # find the indices of the final selected pairs
-    optimal_index = [
-        value for value, binary_value in zip(index, x_values) if binary_value == 1
-    ]
-
-    return status, solver.Objective().Value(), optimal_index
-
 **Results:**
 Column Generation is able to provide a 2.4x decrease in time taken to final the optimal set of pairings. The use of limited number of pairings reduces the computation requirements tremendously. 
 
