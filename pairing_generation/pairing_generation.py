@@ -52,7 +52,7 @@ def generate_pairs():
     valid_pair_dfs = []
 
     # call the function to generate pairs
-    for a in range(2, 4):
+    for a in range(2, 6):
         for duty in duties:
             generate_pairs_dfs(np_arr, duties, [duty], valid_pair_dfs, a)
 

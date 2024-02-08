@@ -150,4 +150,6 @@ def column_gen():
         if time.time() - start_time >= timeout_seconds:
             break
 
-    return idx
+    # save the subset pairings as a txt file
+    with open(f"data/subset_pairings/subset_pairings.txt", "w") as file:
+        file.writelines(f"{item}\n" for item in [pairings[j] for j in idx])

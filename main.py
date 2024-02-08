@@ -6,6 +6,7 @@ from data.data_creation import create_data
 from pairing_generation.duty_generation import generate_duties
 from pairing_generation.pairing_generation import generate_pairs
 from crew_pairing.column_gen import column_gen
+from plot.network_plot import network_plot
 
 
 # function to generate duties and pairs
@@ -52,11 +53,31 @@ def generate():
     if st.button("Solve Using Column Generation"):
         # call the column generation function inside a spinner
         with st.spinner("Solving Problem..."):
-            idx = column_gen()
+            column_gen()
 
         # display the success message
         st.success("Problem Solved Successfully!")
-        st.write(idx)
+
+
+# define the function to plot the network
+def plot():
+    # ceate a subheader
+    st.subheader("Network Plot")
+
+    # create a select box to select the option
+    option = st.selectbox(
+        "Select the option to display on the network plot",
+        ("Flight Leg ID", "Airport"),
+    )
+
+    # create a button
+    if st.button("Plot Network"):
+
+        # call the network plot function
+        network_plot(option)
+
+        # display the network plot
+        st.image("data/subset_pairings/network_plot.png")
 
 
 # the code embeds the functions into a streamlit application
@@ -79,6 +100,9 @@ def main():
             # call the generate function
             generate()
 
+            # call the plot function
+            plot()
+
     # if the user selects the generate mode
     elif mode == "Generate":
         # call the create duties function
@@ -86,6 +110,9 @@ def main():
 
         # call the generate function
         generate()
+
+        # call the plot function
+        plot()
 
 
 # call the main function with the initiation of the file
