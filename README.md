@@ -25,6 +25,9 @@ A crew pairing is a sequence of flight legs, within the same fleet, that starts 
 ## Pairing Generation
 The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
 
+# Data Collection
+The data is collected from airline aggregrators by using a web scraper extension. These extensions are typically browser add-ons or plugins that enhance the functionality of web browsers, allowing users to gather information from websites without manual copying and pasting.
+
 # Depth First Search
 The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes (flight legs) by going ahead, if possible, else by backtracking. 
 
