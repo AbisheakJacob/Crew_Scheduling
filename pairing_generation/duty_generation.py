@@ -1,19 +1,18 @@
-# %%
 # importing the packages
 import numpy as np
 import pandas as pd
+from itertools import chain
 from warnings import filterwarnings
 
 filterwarnings("ignore")
 
 
-# %%
 #  DFS function to generate all possible duties
 def generate_duties_dfs(np_arr, current_duty, valid_duty, depth):
-    if is_valid_duty(np_arr, current_duty, depth):
+    if is_valid_duty(np_arr, current_duty) and len(current_duty) >= depth:
         valid_duty.append(current_duty.copy().tolist())
         return
-    if len(current_duty) == depth:
+    if len(current_duty) == 3: # this is a depth limiter
         return
 
     for index in np.where(np_arr[:, 1] == np_arr[current_duty[-1]][2])[0]:
@@ -23,7 +22,6 @@ def generate_duties_dfs(np_arr, current_duty, valid_duty, depth):
             current_duty = current_duty[:-1]  # Backtrack
 
 
-# %%
 # function taking care of the time constraint and total time constraint
 def sub_df(np_arr, current_duty, index):
     return (
@@ -34,10 +32,9 @@ def sub_df(np_arr, current_duty, index):
 
 
 # total time constraint and return to homebase constraint
-def is_valid_duty(np_arr, current_duty, depth):
+def is_valid_duty(np_arr, current_duty):
     return (
-        len(current_duty) == depth
-        and (np_arr[current_duty[0]][1] == np_arr[current_duty[-1]][2])
+        (np_arr[current_duty[0]][1] == np_arr[current_duty[-1]][2])
         and (
             (np_arr[current_duty[-1]][4] - np_arr[current_duty[0]][3])
             <= np.timedelta64(10, "h")
@@ -45,12 +42,11 @@ def is_valid_duty(np_arr, current_duty, depth):
     )
 
 
-# %%
 # function to generate all possible duties
 def generate_duties(depth=3):
     # Reading the dataframe and converting it to a numpy array
     np_arr = pd.read_csv(
-        "../data/flight_legs/data.csv",
+        "data/flight_legs/data.csv",
         parse_dates=["start_time", "end_time"],
         infer_datetime_format=True,
     ).to_numpy()
@@ -62,31 +58,21 @@ def generate_duties(depth=3):
         generate_duties_dfs(np_arr, np.array([start_leg]), valid_duty_dfs, depth)
 
     # Open the file in write mode
-    with open(f"../data/duties/duties.txt", "w") as file:
+    with open(f"data/duties/duties.txt", "w") as file:
         file.writelines(f"{item}\n" for item in valid_duty_dfs)
 
 
-# %%
-# Driver code
-generate_duties(depth=3)
-
-
-# %%
 # define the function to check if all the flight legs are covered
 def duty_check():
     # Open the file in read mode
-    with open("../data/duties/duties.txt", "r") as file:
+    with open("data/duties/duties.txt", "r") as file:
         lines = file.readlines()
 
     # convert each line (representing a list) to an actual list
     duties = [eval(line) for line in lines]
 
-    from itertools import chain
-
     duty = list(set(chain(*duties)))
 
-    print(len(duties), len(duty))
+    flight_legs = len(duty)
 
-
-# call the duty check function
-duty_check()
+    return flight_legs
