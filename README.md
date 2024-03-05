@@ -79,8 +79,8 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
     
 **Sub-Problem**
 
-# function to find the reduced cost matrix
-def sub_problem(pairings, cost_matrix, index, num_pairs, num_flights):
+    # function to find the reduced cost matrix
+    def sub_problem(pairings, cost_matrix, index, num_pairs, num_flights):
     pairings_sp = [pairings[i] for i in index]
     cost_matrix_sp = cost_matrix[index].reshape(-1, 1)
 
