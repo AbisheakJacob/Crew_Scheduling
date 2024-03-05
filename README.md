@@ -102,7 +102,10 @@ Column Generation is able to provide a 2.4x decrease in time taken to final the 
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
 
 # How to install and run the project
-Streamlit 
+To install, there is an open-source app - https://streamlit.io/ 
+Upload the data (flight schedules) as input in the given link for getting the work schedules.
+Link to the application: https://team1-crewscheduling.streamlit.app/
+
 
 # Recommendations
 - Numba, cuda integration for nopython and parallel processing.​
@@ -120,7 +123,7 @@ Streamlit
 7. Web Scrapping Bot
 8. Pyomo implementation
 
-The initial fine-tuning of the model has resulted in 5x increase in the speed of the model, significant reduction in memory usage.
+The initial fine-tuning of the model has resulted in 40% decrease in computational time, significant reduction in memory usage.
 
 # Streamlit for Web Application
 
