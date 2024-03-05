@@ -55,6 +55,7 @@ Column Generation is the most widely adopted technique which is proven for effic
 The algorithm consists of two main components: the Restricted Master Problem (RMP) and the Sub-Problem.
 
 **Restricted Master Problem**
+    
     # define the restricted master problem
     def RMP(index, num_flights, pairings, cost_matrix):
     pairings_rmp = [pairings[i] for i in index]
@@ -77,18 +78,18 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
 
     
 **Sub-Problem**
-    # function to find the reduced cost matrix
-    def sub_problem(pairings, cost_matrix, index, num_pairs, num_flights):
-    pairings_sp = [pairings[i] for i in index]
-    cost_matrix_sp = cost_matrix[index].reshape(-1, 1)
+# function to find the reduced cost matrix
+def sub_problem(pairings, cost_matrix, index, num_pairs, num_flights):
+pairings_sp = [pairings[i] for i in index]
+cost_matrix_sp = cost_matrix[index].reshape(-1, 1)
 
-    # Initializing the LP Solver
-    solver = pywraplp.Solver.CreateSolver("GLOP")
+# Initializing the LP Solver
+solver = pywraplp.Solver.CreateSolver("GLOP")
 
-    # creating the binary allocation variable
-    x = np.array([solver.NumVar(0, 1, f"x_{i}") for i in range(len(index))]).reshape(
-        -1, 1
-    )
+# creating the binary allocation variable
+x = np.array([solver.NumVar(0, 1, f"x_{i}") for i in range(len(index))]).reshape(
+   -1, 1
+)
 
     # create a matrix that is the product of the decision variable and the pair matrix
     for i in range(num_flights):
