@@ -74,6 +74,8 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
             == 1.0
         )
 
+    
+    
     # function to find the reduced cost matrix
     def sub_problem(pairings, cost_matrix, index, num_pairs, num_flights):
     pairings_sp = [pairings[i] for i in index]
@@ -102,9 +104,9 @@ Column Generation is able to provide a 2.4x decrease in time taken to final the 
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
 
 # How to install and run the project
-To install, there is an open-source app - https://streamlit.io/ 
-Upload the data (flight schedules) as input in the given link for getting the work schedules.
-Link to the application: https://team1-crewscheduling.streamlit.app/
+1. To install, there is an open-source app - https://streamlit.io/ 
+2. Upload the data (flight schedules) as input in the given link for getting the work schedules.
+3. Link to the application: https://team1-crewscheduling.streamlit.app/
 
 
 # Recommendations
