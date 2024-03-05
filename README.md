@@ -119,14 +119,10 @@ This implementation of the Column Generation algorithm provides an efficient app
 
 # Fine-Tuning the Model
 1. Elimination of Redundant Variables
-2. In Time Generation of Pair Matrix and Cost Matrix
+2. Parallel Processing- In Time Generation of Pair Matrix and Cost Matrix
 3. Streamlit Deployment
 4. Real-Time Data Testing
-5. Scalability
-6. Parallel Processing
-7. Web Scrapping Bot
-8. Pyomo implementation
-
+   
 The initial fine-tuning of the model has resulted in 40% decrease in computational time, significant reduction in memory usage.
 
 # Streamlit for Web Application
