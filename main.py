@@ -6,7 +6,6 @@ from data.data_creation import create_data
 from pairing_generation.duty_generation import generate_duties
 from pairing_generation.pairing_generation import generate_pairs
 from crew_pairing.column_gen import column_gen
-from plot.network_plot import network_plot
 
 
 # function to generate duties and pairs
