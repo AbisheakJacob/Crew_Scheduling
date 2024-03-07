@@ -121,10 +121,14 @@ Streamlit
 8. Pyomo implementation
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 The initial fine-tuning of the model has resulted in 5x increase in the speed of the model, significant reduction in memory usage.
 =======
 The initial fine-tuning of the model has resulted in 40% decrease in computational time, significant reduction in memory usage.
 >>>>>>> parent of 55c8564 (Update README.md)
+=======
+The initial fine-tuning of the model has resulted in 5x increase in the speed of the model, significant reduction in memory usage.
+>>>>>>> parent of d6b8588 (Merge branch 'main' of https://github.com/AbisheakJacob/Crew_Scheduling)
 
 # Streamlit for Web Application
 
