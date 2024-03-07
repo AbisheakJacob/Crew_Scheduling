@@ -27,7 +27,7 @@ def generate_pairs_dfs(np_arr, duties, current_pair, valid_pairs, a):
 
 
 # Function to check if the pair is valid
-def is_valid_pair(np_arr, current_pair, pair_time):
+def is_valid_pair(np_arr, current_pair):
     if len(current_pair) >= 2:
         return (
             np_arr[current_pair[-1][-1]][4] - np_arr[current_pair[0][0]][3]

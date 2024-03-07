@@ -6,6 +6,7 @@ from data.data_creation import create_data
 from pairing_generation.duty_generation import generate_duties
 from pairing_generation.pairing_generation import generate_pairs
 from crew_pairing.column_gen import column_gen
+from plot.network_plot import network_plot
 
 
 # function to generate duties and pairs
@@ -63,20 +64,14 @@ def plot():
     # ceate a subheader
     st.subheader("Network Plot")
 
-    # create a select box to select the option
-    option = st.selectbox(
-        "Select the option to display on the network plot",
-        ("Flight Leg ID", "Airport"),
-    )
-
     # create a button
     if st.button("Plot Network"):
 
         # call the network plot function
-        network_plot(option)
+        network_plot()
 
         # display the network plot
-        st.image("data/subset_pairings/network_plot.png")
+        st.image(f"data/subset_pairings/network_plot.png")
 
 
 # the code embeds the functions into a streamlit application

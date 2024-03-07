@@ -8,42 +8,40 @@ filterwarnings("ignore")
 
 
 #  DFS function to generate all possible duties
-def generate_duties_dfs(np_arr, current_duty, valid_duty, depth):
-    if is_valid_duty(np_arr, current_duty) and len(current_duty) >= depth:
+def generate_duties_dfs(np_arr, current_duty, valid_duty):
+    if is_valid_duty(np_arr, current_duty):
         valid_duty.append(current_duty.copy().tolist())
         return
-    if len(current_duty) == 3: # this is a depth limiter
+    if len(current_duty) == 3:  # this is a depth limiter
         return
 
+    # Recursive DFS for each remaining flight leg
     for index in np.where(np_arr[:, 1] == np_arr[current_duty[-1]][2])[0]:
+        # Check if the leg can be added to the current pair
         if sub_df(np_arr, current_duty, index):
             current_duty = np.append(current_duty, index)
-            generate_duties_dfs(np_arr, current_duty, valid_duty, depth)
+            generate_duties_dfs(np_arr, current_duty, valid_duty)
             current_duty = current_duty[:-1]  # Backtrack
 
 
 # function taking care of the time constraint and total time constraint
 def sub_df(np_arr, current_duty, index):
-    return (
-        np.timedelta64(1, "h")
-        <= (np_arr[index][3] - np_arr[current_duty[-1]][4])
-        <= np.timedelta64(4, "h")
+    time_difference = np_arr[index][3] - np_arr[current_duty[-1]][4]
+    return ((time_difference >= np.timedelta64(1, "h"))) and (
+        (time_difference <= np.timedelta64(3, "h"))
     )
 
 
 # total time constraint and return to homebase constraint
 def is_valid_duty(np_arr, current_duty):
-    return (
-        (np_arr[current_duty[0]][1] == np_arr[current_duty[-1]][2])
-        and (
-            (np_arr[current_duty[-1]][4] - np_arr[current_duty[0]][3])
-            <= np.timedelta64(10, "h")
-        )
+    return (np_arr[current_duty[0]][1] == np_arr[current_duty[-1]][2]) and (
+        (np_arr[current_duty[-1]][4] - np_arr[current_duty[0]][3])
+        <= np.timedelta64(10, "h")
     )
 
 
 # function to generate all possible duties
-def generate_duties(depth=3):
+def generate_duties():
     # Reading the dataframe and converting it to a numpy array
     np_arr = pd.read_csv(
         "data/flight_legs/data.csv",
@@ -55,7 +53,7 @@ def generate_duties(depth=3):
 
     # Start DFS from each flight leg
     for start_leg in range(len(np_arr)):
-        generate_duties_dfs(np_arr, np.array([start_leg]), valid_duty_dfs, depth)
+        generate_duties_dfs(np_arr, np.array([start_leg]), valid_duty_dfs)
 
     # Open the file in write mode
     with open(f"data/duties/duties.txt", "w") as file:
