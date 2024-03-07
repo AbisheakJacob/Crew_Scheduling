@@ -54,8 +54,6 @@ Column Generation is the most widely adopted technique which is proven for effic
 ### Column Generation Algorithm
 The algorithm consists of two main components: the Restricted Master Problem (RMP) and the Sub-Problem.
 
-**Restricted Master Problem**
-    
     # define the restricted master problem
     def RMP(index, num_flights, pairings, cost_matrix):
     pairings_rmp = [pairings[i] for i in index]
@@ -75,9 +73,6 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
             )
             == 1.0
         )
-
-    
-**Sub-Problem**
 
     # function to find the reduced cost matrix
     def sub_problem(pairings, cost_matrix, index, num_pairs, num_flights):
@@ -100,16 +95,14 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
             )
             == 1.0
         )
+
 **Results:**
 Column Generation is able to provide a 2.4x decrease in time taken to final the optimal set of pairings. The use of limited number of pairings reduces the computation requirements tremendously. 
 
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
 
 # How to install and run the project
-1. To install, there is an open-source app - https://streamlit.io/ 
-2. Upload the data (flight schedules) as input in the given link for getting the work schedules.
-3. Link to the application: https://team1-crewscheduling.streamlit.app/
-
+Streamlit 
 
 # Recommendations
 - Numba, cuda integration for nopython and parallel processing.​
@@ -119,11 +112,15 @@ This implementation of the Column Generation algorithm provides an efficient app
 
 # Fine-Tuning the Model
 1. Elimination of Redundant Variables
-2. Parallel Processing- In Time Generation of Pair Matrix and Cost Matrix
+2. In Time Generation of Pair Matrix and Cost Matrix
 3. Streamlit Deployment
 4. Real-Time Data Testing
-   
-The initial fine-tuning of the model has resulted in 40% decrease in computational time, significant reduction in memory usage.
+5. Scalability
+6. Parallel Processing
+7. Web Scrapping Bot
+8. Pyomo implementation
+
+The initial fine-tuning of the model has resulted in 5x increase in the speed of the model, significant reduction in memory usage.
 
 # Streamlit for Web Application
 
