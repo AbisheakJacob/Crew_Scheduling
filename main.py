@@ -73,7 +73,7 @@ def plot():
     if st.button("Plot Network"):
 
         # call the network plot function
-        # network_plot(option)
+        network_plot(option)
 
         # display the network plot
         st.image("data/subset_pairings/network_plot.png")
