@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from data.data_creation import create_data
+from data.data_info import data_info
 from pairing_generation.duty_generation import generate_duties
 from pairing_generation.pairing_generation import generate_pairs
 from crew_pairing.column_gen import column_gen
@@ -30,6 +31,17 @@ def generate():
 
     # display the data based on the user option
     st.write(options_map[data_option])
+
+    # display the information of the data
+    st.subheader("Data Information:")
+
+    # get the information of the data
+    num_days, num_flights, num_airports = data_info()
+
+    # display the information
+    st.write(f"Number of Days: {num_days}")
+    st.write(f"Number of Flights: {num_flights}")
+    st.write(f"Number of Airports: {num_airports}")
 
     # create a button to generate duties
     if st.button("Generate Duties"):
@@ -77,7 +89,7 @@ def plot():
 # the code embeds the functions into a streamlit application
 def main():
     # title of the web application
-    st.title("Pairing Generation")
+    st.title("Crew Pairing")
 
     # select box to select the mode of selecting the dataset
     mode = st.selectbox("Select the mode of data selection", ("Upload", "Generate"))
