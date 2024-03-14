@@ -6,8 +6,48 @@ import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
 
 
-def network_plot():
+# create a figure and axis
+def plot_departure(ax, departure_airport, i, j, x, y):
+    ax.annotate(
+        f"{departure_airport[i][j]}",
+        xy=(x, y),
+        xytext=(x, y - 0.15),
+        textcoords="data",
+        ha="right",
+        va="bottom",
+        fontsize=12,
+        fontweight="bold",
+    )
 
+
+def plot_destination(ax, destination_airport, i, j, x, y):
+    ax.annotate(
+        f"{destination_airport[i][j]}",
+        xy=(x, y),
+        xytext=(x + pd.Timedelta(minutes=30), y - 0.275),
+        textcoords="data",
+        ha="left",
+        va="top",
+        fontsize=12,
+        fontweight="bold",
+    )
+
+
+def plot_flight_leg_id(ax, i, j, x, y, flight_leg_id, distance=pd.Timedelta(minutes=0)):
+    ax.annotate(
+        f"{flight_leg_id[i][j]}",
+        xy=(x, y),
+        xytext=(x + distance, y + 0.3),
+        textcoords="data",
+        ha="center",
+        va="bottom",
+        fontsize=12,
+        fontweight="bold",
+    )
+
+
+# the main function
+def network_plot():
     # read the pairings.txt file
     # Open the file in read mode
     with open("data/subset_pairings/subset_pairings.txt", "r") as file:
@@ -18,6 +58,7 @@ def network_plot():
 
     # sort pairings based on the first element of each list
     pairings.sort(key=lambda x: x[0])
+
     # read the flight leg data
     np_arr = pd.read_csv(
         "data/flight_legs/data.csv",
@@ -39,21 +80,15 @@ def network_plot():
     # sort the pairing dictionary based on the first timestamp
     pairings_dict = dict(sorted(pairings_dict.items(), key=lambda item: item[1][0]))
 
-    # Plotting
-    fig = plt.figure(figsize=(15, 10))
-    ax = fig.add_subplot()
-
-    names = []
-
-    for i in range(0, len(pairings_dict), 5):
-
+    for a in range(0, len(pairings_dict), 5):
         # get the keys
-        Keys = list(pairings_dict.keys())[i : i + 5]
+        Keys = list(pairings_dict.keys())[a : a + 5]
         # get the values
         # create a new dict with subset of keys
         pairings_dict_subset = {k: pairings_dict[k] for k in Keys}
         # Plotting
-
+        # make the entire plot black and white
+        plt.style.use("grayscale")
         fig = plt.figure(figsize=(15, 10))
 
         ax = fig.add_subplot()
@@ -66,37 +101,27 @@ def network_plot():
 
             for j, (x, y) in enumerate(zip(value, [i] * len(value))):
 
-                ax.annotate(
-                    f"{departure_airport[i][j]}",
-                    xy=(x, y),
-                    xytext=(x, y - 0.15),
-                    textcoords="data",
-                    ha="right",
-                    va="bottom",
-                    fontsize=12,
-                    fontweight="bold",
-                )
+                try:
+                    if value[j + 1] - value[j] == pd.Timedelta(hours=4):
+                        plot_departure(ax, departure_airport, i, j, x, y)
+                        plot_flight_leg_id(ax, i, j, x, y, flight_leg_id=flight_leg_id)
+                    elif value[j + 1] - value[j] == pd.Timedelta(hours=3):
+                        plot_departure(ax, departure_airport, i, j, x, y)
+                        plot_flight_leg_id(ax, i, j, x, y, flight_leg_id=flight_leg_id)
+                    elif value[j + 1] - value[j] <= pd.Timedelta(hours=6):
+                        plot_departure(ax, departure_airport, i, j, x, y)
+                        plot_flight_leg_id(ax, i, j, x, y, flight_leg_id=flight_leg_id)
+                    else:
+                        plot_departure(ax, departure_airport, i, j, x, y)
+                        plot_destination(ax, destination_airport, i, j, x, y)
+                        plot_flight_leg_id(
+                            ax, i, j, x, y, flight_leg_id, pd.Timedelta(minutes=60)
+                        )
 
-                ax.annotate(
-                    f"{destination_airport[i][j]}",
-                    xy=(x, y),
-                    xytext=(x - pd.Timedelta(minutes=80), y + 0.2),
-                    textcoords="data",
-                    ha="left",
-                    va="top",
-                    fontsize=12,
-                    fontweight="bold",
-                )
-                ax.annotate(
-                    f"{flight_leg_id[i][j]}",
-                    xy=(x, y),
-                    xytext=(x + pd.Timedelta(minutes=30), y + 0.15),
-                    textcoords="data",
-                    ha="center",
-                    va="bottom",
-                    fontsize=12,
-                    fontweight="bold",
-                )
+                except:
+                    plot_departure(ax, departure_airport, i, j, x, y)
+                    plot_destination(ax, destination_airport, i, j, x, y)
+                    plot_flight_leg_id(ax, i, j, x, y, flight_leg_id)
 
         # Set y-axis ticks and labels
 
@@ -136,6 +161,7 @@ def network_plot():
         # Show plot
 
         plt.tight_layout()
-
+        plt.savefig(f"data/network_plot/network_plot{a}.png")
         plt.show()
-        plt.savefig(f"data/subset_pairings/network_plot{i}.png")
+
+    return len(pairings_dict)

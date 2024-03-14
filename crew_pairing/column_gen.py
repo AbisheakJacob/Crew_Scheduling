@@ -103,6 +103,15 @@ def column_gen():
     with open("data/pairings/pairings.txt") as file:
         pairings = [list(chain.from_iterable(eval(line))) for line in file]
 
+    # find the lengths of the pairings
+    pair_lengths = [len(pair) for pair in pairings]
+
+    unique_pair_lengths = list(set(pair_lengths))
+
+    # find the max length and the min length
+    max_length = max(unique_pair_lengths)
+    min_length = min(unique_pair_lengths)
+
     # calculate the cost matrix from pair list
     cost_matrix = np.array(
         [
@@ -111,16 +120,27 @@ def column_gen():
         ]
     )
 
+    len_sorted = []
+    sorted_cost_matrix = np.argsort(cost_matrix).tolist()
+
+    # iterate through the lengths
+    for i in range(max_length, min_length - 1, -1):
+        len_sorted.extend(
+            [pair for pair in sorted_cost_matrix if pair_lengths[pair] == i]
+        )
+
     # determining the number of flights and tasks
     num_pairs = len(pairings)
     num_flights = len(np_arr)
 
+    # coloumn generation
+
     # initialization huerestics
-    ini_pair, increment = 15000, 1000
+    ini_pair, increment = round(num_pairs * 0.05), round(num_pairs * 0.01)
 
     while True:
         # create a reduced pair array that contains atleast one feasible solution
-        ini_index = np.argsort(cost_matrix)[:ini_pair].tolist()
+        ini_index = len_sorted[:ini_pair]
 
         status, obj, index = RMP(ini_index, num_flights, pairings, cost_matrix)
 
@@ -128,6 +148,9 @@ def column_gen():
             break
 
         ini_pair += increment
+
+        print(ini_pair)
+
     # setting the timer
     start_time = time.time()
     timeout_seconds = 10

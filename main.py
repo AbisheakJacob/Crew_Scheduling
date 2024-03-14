@@ -43,6 +43,9 @@ def generate():
     st.write(f"Number of Flights: {num_flights}")
     st.write(f"Number of Airports: {num_airports}")
 
+    # subheader to perform the operations
+    st.subheader("Process")
+
     # create a button to generate duties
     if st.button("Generate Duties"):
         # call the generate duties function inside a spinner
@@ -56,7 +59,7 @@ def generate():
     if st.button("Generate Pairs"):
         # call the generate pairs function inside a spinner
         with st.spinner("Generating Pairings..."):
-            generate_pairs()
+            generate_pairs(num_days)
 
         # display the success message
         st.success("Pairings Generated Successfully!")
@@ -80,10 +83,11 @@ def plot():
     if st.button("Plot Network"):
 
         # call the network plot function
-        network_plot()
+        len_pairings_dict = network_plot()
 
         # display the network plot
-        st.image(f"data/subset_pairings/network_plot.png")
+        for i in range(0, len_pairings_dict, 5):
+            st.image(f"data/network_plot/network_plot{i}.png")
 
 
 # the code embeds the functions into a streamlit application

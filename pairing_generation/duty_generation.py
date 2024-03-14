@@ -28,7 +28,7 @@ def generate_duties_dfs(np_arr, current_duty, valid_duty):
 def sub_df(np_arr, current_duty, index):
     time_difference = np_arr[index][3] - np_arr[current_duty[-1]][4]
     return ((time_difference >= np.timedelta64(1, "h"))) and (
-        (time_difference <= np.timedelta64(3, "h"))
+        (time_difference <= np.timedelta64(5, "h"))
     )
 
 
@@ -36,7 +36,7 @@ def sub_df(np_arr, current_duty, index):
 def is_valid_duty(np_arr, current_duty):
     return (np_arr[current_duty[0]][1] == np_arr[current_duty[-1]][2]) and (
         (np_arr[current_duty[-1]][4] - np_arr[current_duty[0]][3])
-        <= np.timedelta64(10, "h")
+        <= np.timedelta64(9, "h")
     )
 
 
@@ -71,6 +71,4 @@ def duty_check():
 
     duty = list(set(chain(*duties)))
 
-    flight_legs = len(duty)
-
-    return flight_legs
+    return len(duties), len(duty)
