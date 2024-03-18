@@ -108,7 +108,25 @@ Array-based architecture is able to provide a 2.4x decrease in time taken to fin
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
 
 # How to install and run the project
-Streamlit 
+** Hosted the application on GitHub**
+Clone the Repository
+- The Streamlit application is hosted in a repository, clone it to your local machine using Git:
+git clone <https://github.com/AbisheakJacob/Crew_Scheduling>
+
+**Navigate to the Project Directory**
+Open a terminal or command prompt and navigate to the directory where the Streamlit application code is located.
+
+**Install Dependencies**
+If the application has additional dependencies, install them using pip:
+pip install -r requirements.txt
+
+**Run the Application**
+Execute the Streamlit application by running the following command:
+streamlit run main.py
+
+**Access the Application**
+Once the application is running, you can access it by opening a web browser and navigating to the URL provided in the terminal.
+
 
 # Recommendations
 - Numba, cuda integration for nopython and parallel processing.​
@@ -117,4 +135,24 @@ Streamlit
 - Use code optimization techniques.
 
 # Streamlit for Web Application
+**STARTING THE APPLICATION**
+Open the link to get start with the application.
+**Link to the application: https://team1-crewscheduling.streamlit.app/**
 
+**INITIATING DATA UPLOADS**
+Users have the option to choose the method of data input and can either upload the data via a CSV file by browsing their desktop or by using the drag and drop feature.
+
+**DATA DISPLAY**
+Users have the option to select how the data is presented: either the beginning (head) or the end (tail), or they can choose not to display it at all.
+ 
+**GENERATION OF DUTIES AND PAIRINGS** 
+The application utilizes a depth-first search algorithm to generate both duties and pairings. There is no requirement to store the pairings and the cost matrix separately as they are generated simultaneously in real-time.
+ 
+**CREW PAIRING**
+The application employs column generation to solve crew pairing, resulting in the determination of the set of pairings.
+ 
+**OUTPUT**
+The output can be visualized on the network plot by choosing either the Flight Leg ID or the airport as reference points.
+ 
+
+	
