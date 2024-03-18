@@ -1,5 +1,5 @@
 # Indian Airline Sector
-The Indian airline sector is currently experiencing a boom with an annual growth rate of 47.05%.
+The Indian airline sector is currently experiencing a boom with an annual growth rate of 75% in terms of flights and passengers.
 
 # Project's Title
 Airline Planning - Crew Scheduling
@@ -11,7 +11,7 @@ Airline Planning - Crew Scheduling
 - Crew Rostering/Assignment
 
 # Project Description
-In the airline industry, crew cost is the highest variable cost and any reduction in crew costs will save the company millions of rupees. Crew Scheduling is a larger problem in many industries like healthcare, airlines, railways etc.
+In the airline industry, crew cost is the second highest variable cost and any reduction in crew costs will save the company millions of rupees. Crew Scheduling is a larger problem in many industries like healthcare, airlines, railways etc. Our scope revolves around developing a python-based optimisation model deployed using Streamlit framework to efficiently schedule crew pairings by mimimising the cost and maximising crew utilisation.
 
 ## Project Objectives
    1. Minimize crew costs - (whilst maximizing preferences)​
@@ -74,6 +74,7 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
             == 1.0
         )
 
+    
     # function to find the reduced cost matrix
     def sub_problem(pairings, cost_matrix, index, num_pairs, num_flights):
     pairings_sp = [pairings[i] for i in index]
