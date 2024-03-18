@@ -114,7 +114,6 @@ This implementation of the Column Generation algorithm provides an efficient app
     pip install numpy
     pip install pandas
     pip install streamlit
-    pip install ortools
      
 **Hosted the application on GitHub**
   
