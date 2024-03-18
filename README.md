@@ -24,6 +24,8 @@ A crew pairing is a sequence of flight legs, within the same fleet, that starts 
 
 ## Pairing Generation
 The pairing generation process uses depth first search algorithm and is divided into two principal components: Duty Generation and Pairing Generation.
+- Duty Generation: Flight schedules are processed to generate flight duties, ensuring coverage of all flight legs while meeting legality constraints.
+- Pairing Generation: Pairings are generated from flight duties, ensuring each flight leg is covered by at least one pairing.
 
 # Data Collection
 The data is collected from airline aggregrators by using a web scraper extension. These extensions are typically browser add-ons or plugins that enhance the functionality of web browsers, allowing users to gather information from websites without manual copying and pasting.
