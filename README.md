@@ -111,8 +111,8 @@ This implementation of the Column Generation algorithm provides an efficient app
 ## Streamlit Docs
 **Install**  
     
-   ```pip install streamlit```
-    
+    pip install streamlit  
+     
 **Hosted the application on GitHub**
   
    **Clone the Repository**
