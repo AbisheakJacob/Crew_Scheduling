@@ -98,7 +98,7 @@ The algorithm consists of two main components: the Restricted Master Problem (RM
         )
 
 **Results:**
-Column Generation is able to provide a 2.4x decrease in time taken to final the optimal set of pairings. The use of limited number of pairings reduces the computation requirements tremendously. 
+Array-based architecture is able to provide a 2.4x decrease in time taken to final the optimal set of pairings. The use of column generation leads 40% decrease in computational time.
 
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
 
