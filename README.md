@@ -108,6 +108,11 @@ Array-based architecture is able to provide a 2.4x decrease in time taken to fin
 This implementation of the Column Generation algorithm provides an efficient approach to solving crew pairing optimization problems. It can be adapted to different scenarios by adjusting input data and parameters. The algorithm aims to find an optimal solution while considering constraints and minimizing overall costs.
 
 # How to install and run the project
+## Streamlit Docs
+**Install**  
+    
+   ```pip install streamlit```
+    
 **Hosted the application on GitHub**
   
    **Clone the Repository**
