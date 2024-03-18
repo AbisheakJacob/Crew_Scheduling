@@ -122,7 +122,7 @@ pip install -r requirements.txt
 
 **Run the Application**
 Execute the Streamlit application by running the following command:
-streamlit run main.py
+```streamlit run main.py```
 
 **Access the Application**
 Once the application is running, you can access it by opening a web browser and navigating to the URL provided in the terminal.
