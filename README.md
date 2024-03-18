@@ -109,7 +109,7 @@ This implementation of the Column Generation algorithm provides an efficient app
 
 # How to install and run the project
 ## Streamlit Docs
-**Install**  
+**Install Package**  
     
     pip install streamlit  
      
