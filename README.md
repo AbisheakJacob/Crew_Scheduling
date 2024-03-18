@@ -111,18 +111,18 @@ This implementation of the Column Generation algorithm provides an efficient app
 ** Hosted the application on GitHub**
 Clone the Repository
 The Streamlit application is hosted in a repository, clone it to your local machine using Git:
-_git clone <https://github.com/AbisheakJacob/Crew_Scheduling>
+  git clone <https://github.com/AbisheakJacob/Crew_Scheduling>
 
 **Navigate to the Project Directory**
 Open a terminal or command prompt and navigate to the directory where the Streamlit application code is located.
 
 **Install Dependencies**
 If the application has additional dependencies, install them using pip:
- _```pip install -r requirements.txt```
+  ```pip install -r requirements.txt```
 
 **Run the Application**
 Execute the Streamlit application by running the following command:
- _```streamlit run main.py```
+  ```streamlit run main.py```
 
 **Access the Application**
 Once the application is running, you can access it by opening a web browser and navigating to the URL provided in the terminal.
@@ -136,8 +136,8 @@ Once the application is running, you can access it by opening a web browser and 
 
 # Streamlit for Web Application
 **STARTING THE APPLICATION**
-Open the link to get start with the application.
-_**Link to the application: https://team1-crewscheduling.streamlit.app/**
+Open the link to get start with the application.  
+  **Link to the application: https://team1-crewscheduling.streamlit.app/**
 
 **INITIATING DATA UPLOADS**
 Users have the option to choose the method of data input and can either upload the data via a CSV file by browsing their desktop or by using the drag and drop feature.
